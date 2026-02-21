@@ -91,6 +91,7 @@ export const NewsFeedResponseSchema = z.object({
   linkdata: NewsFeedLinkDataSchema,
 });
 
+export type NewsFeedItem = z.infer<typeof NewsFeedItemSchema>;
 export type NewsFeedResponse = z.infer<typeof NewsFeedResponseSchema>;
 
 export const NewsFeedParamsSchema = z.object({
