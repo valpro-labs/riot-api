@@ -5,18 +5,9 @@ import type {
 
 import type { Region } from '../interfaces/ValorantType';
 import { ValorantItemTypeID } from '../interfaces/ValorantType';
+import { OwnedItemsResponse } from '../interfaces/OwnedItems';
 
 import { RiotClient } from '../RiotClient';
-
-interface OwnedItemsResponse {
-  Entitlements: {
-    /** UUID */
-    TypeID: string;
-    /** Item ID */
-    ItemID: string;
-    Tiers?: string | undefined;
-  }[];
-}
 
 export class StoreApi {
   private client: RiotClient;
