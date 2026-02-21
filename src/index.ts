@@ -5,6 +5,7 @@ import { PvpApi } from './endpoints/PvpApi';
 import { StoreApi } from './endpoints/StoreApi';
 import { ContractApi } from './endpoints/ContractApi';
 import { PreGameApi } from './endpoints/PreGameApi';
+import { NewsFeedApi } from './endpoints/NewsFeedApi';
 
 import { IAuthProvider } from './interfaces/IAuthProvider';
 import { IVersionProvider } from './interfaces/IVersionProvider';
@@ -22,6 +23,7 @@ class RiotApi {
   public storeApi: StoreApi;
   public contractApi: ContractApi;
   public preGameApi: PreGameApi;
+  public newsFeedApi: NewsFeedApi;
 
   constructor(config: RiotApiConfig) {
     this.client = new RiotClient({
@@ -34,6 +36,7 @@ class RiotApi {
     this.storeApi = new StoreApi(this.client);
     this.contractApi = new ContractApi(this.client);
     this.preGameApi = new PreGameApi(this.client);
+    this.newsFeedApi = new NewsFeedApi();
   }
 
   public reset() {
