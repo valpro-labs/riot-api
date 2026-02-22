@@ -16,5 +16,4 @@ export * from './interfaces/OwnedItems';
 export * from './interfaces/RiotClientConfig';
 export * from './interfaces/ValorantType';
 
-export * from './utils/authUrl';
-export * from './utils/parseAuthRedirect';
+export * from './auth';
