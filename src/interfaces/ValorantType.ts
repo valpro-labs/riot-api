@@ -8,11 +8,13 @@ export const FREE_AGENTS_UUID = 'f08d4ae3-939c-4576-ab26-09ce1f23bb37';
 
 export const VALORANT_ITEM_TYPES = {
   AGENT: '01bb38e1-da47-4e6a-9b3d-945fe4655707',
-  BUDDY: 'dd3bf334-87f3-40bd-b043-682a57a8dc3a',
+  CONTRACT: 'f85cb6f7-33e5-4dc8-b609-ec7212301948',
   SPARY: 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475',
+  BUDDY: 'dd3bf334-87f3-40bd-b043-682a57a8dc3a',
   CARD: '3f296c07-64c3-494c-923b-fe692a4fa1bd',
-  TITLE: 'de7caa6b-adf7-4588-bbd1-143831e786c6',
   SKIN_LEVEL: 'e7c63390-eda7-46e0-bb7a-a6abdacd2433',
+  // TODO: Skin Variants
+  TITLE: 'de7caa6b-adf7-4588-bbd1-143831e786c6',
   FLEX: '03a572de-4234-31ed-d344-ababa488f981',
 };
 
