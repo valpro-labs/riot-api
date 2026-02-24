@@ -4,7 +4,7 @@ import type {
 } from 'valorant-api-types';
 
 import type { Region } from '../interfaces/ValorantType';
-import { ValorantItemTypeID } from '../interfaces/ValorantType';
+import { ItemTypeID } from '../interfaces/ValorantType';
 import { OwnedItemsResponse } from '../interfaces/OwnedItems';
 
 import { RiotClient } from '../RiotClient';
@@ -46,7 +46,7 @@ export class StoreApi {
   /**
    * [API Docs](https://valapidocs.techchrism.me/endpoint/owned-items)
    */
-  public async getOwnedItems(region: Region, uuid: string, itemTypeID: ValorantItemTypeID) {
+  public async getOwnedItems(region: Region, uuid: string, itemTypeID: ItemTypeID) {
     return this.client.requestPD<OwnedItemsResponse>(
       region,
       `store/v1/entitlements/${uuid}/${itemTypeID}`,

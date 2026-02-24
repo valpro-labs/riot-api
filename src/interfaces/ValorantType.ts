@@ -8,7 +8,7 @@ export const CURRENCY_TYPES = {
   FREE_AGENTS: 'f08d4ae3-939c-4576-ab26-09ce1f23bb37',
 };
 
-export type CurrecyTypeID = typeof CURRENCY_TYPES[keyof typeof CURRENCY_TYPES];
+export type CurrencyTypeID = typeof CURRENCY_TYPES[keyof typeof CURRENCY_TYPES];
 
 export const ITEM_TYPES = {
   AGENT: '01bb38e1-da47-4e6a-9b3d-945fe4655707',
