@@ -6,7 +6,7 @@ export const CURRENCY_TYPES = {
   RADIANITE_POINTS: 'e59aa87c-4cbf-517a-5983-6e81511be9b7',
   KINGDOM_CREDITS: '85ca954a-41f2-ce94-9b45-8ca3dd39a00d',
   FREE_AGENTS: 'f08d4ae3-939c-4576-ab26-09ce1f23bb37',
-};
+} as const;
 
 export type CurrencyTypeID = typeof CURRENCY_TYPES[keyof typeof CURRENCY_TYPES];
 
@@ -20,6 +20,6 @@ export const ITEM_TYPES = {
   SKIN_VARIANT: '3ad1b2b2-acdb-4524-852f-954a76ddae0a',
   TITLE: 'de7caa6b-adf7-4588-bbd1-143831e786c6',
   FLEX: '03a572de-4234-31ed-d344-ababa488f981',
-};
+} as const;
 
 export type ItemTypeID = typeof ITEM_TYPES[keyof typeof ITEM_TYPES];
