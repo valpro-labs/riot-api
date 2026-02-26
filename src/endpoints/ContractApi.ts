@@ -1,7 +1,5 @@
 
-import type {
-  ContractsResponse,
-} from 'valorant-api-types';
+import type { ContractsResponse } from '../interfaces/Contract/Contracts';
 
 import { RiotClient } from '../RiotClient';
 

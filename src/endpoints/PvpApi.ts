@@ -1,12 +1,10 @@
 
-import type {
-  AccountXPResponse,
-  CompetitiveUpdatesResponse,
-  PlayerLoadoutResponse,
-  MatchHistoryResponse,
-  MatchDetailsResponse,
-  NameServiceResponse,
-} from 'valorant-api-types';
+import type { AccountXPResponse } from '../interfaces/Pvp/AccountXP';
+import type { CompetitiveUpdatesResponse } from '../interfaces/Pvp/CompetitiveUpdates';
+import type { PlayerLoadoutResponse } from '../interfaces/Pvp/PlayerLoadout';
+import type { MatchHistoryResponse } from '../interfaces/Pvp/MatchHistory';
+import type { MatchDetailsResponse } from '../interfaces/Pvp/MatchDetails';
+import type { NameServiceResponse } from '../interfaces/Pvp/NameService';
 
 import type { Region } from '../interfaces/ValorantType';
 import type { DailyTicketResponse } from '../interfaces/DailyTicket';

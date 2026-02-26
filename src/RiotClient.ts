@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
 
-import { EntitlementResponse } from 'valorant-api-types';
+import { EntitlementResponse } from './interfaces/Auth/Entitlement';
 
 import type { Region, Shard } from './interfaces/ValorantType';
 import { RiotClientConfig } from './interfaces/RiotClientConfig';

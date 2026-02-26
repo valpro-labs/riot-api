@@ -1,7 +1,5 @@
-import type {
-  PlayerInfoResponse,
-  RiotGeoResponse,
-} from 'valorant-api-types';
+import type { PlayerInfoResponse } from '../interfaces/Auth/PlayerInfo';
+import type { RiotGeoResponse } from '../interfaces/Auth/RiotGeo';
 
 import { RiotClient } from '../RiotClient';
 
