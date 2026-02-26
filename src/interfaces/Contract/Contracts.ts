@@ -6,14 +6,14 @@ export const HighestRewardedLevelEntrySchema = z.object({
   Amount: z.number(),
   Version: z.number(),
 });
-export type HighestRewardedLevelEntry = z.infer<typeof HighestRewardedLevelEntrySchema>;
+export type HighestRewardedLevelEntry = z.input<typeof HighestRewardedLevelEntrySchema>;
 
 export const ContractProgressionSchema = z.object({
   TotalProgressionEarned: z.number(),
   TotalProgressionEarnedVersion: z.number(),
   HighestRewardedLevel: z.record(z.string(), HighestRewardedLevelEntrySchema),
 });
-export type ContractProgression = z.infer<typeof ContractProgressionSchema>;
+export type ContractProgression = z.input<typeof ContractProgressionSchema>;
 
 export const ContractSchema = z.object({
   ContractDefinitionID: weakUUIDSchema,
@@ -28,14 +28,14 @@ export const XPGrantModifierEntrySchema = z.object({
   Name: z.enum(['RESTRICTIONS_XP', 'PREMIUM_CONTRACT_XP']),
   BaseOnly: z.boolean(),
 });
-export type XPGrantModifierEntry = z.infer<typeof XPGrantModifierEntrySchema>;
+export type XPGrantModifierEntry = z.input<typeof XPGrantModifierEntrySchema>;
 
 export const XPGrantModifierSchema = z.object({
   Value: z.number(),
   BaseMultiplierValue: z.number(),
   Modifiers: z.array(XPGrantModifierEntrySchema),
 });
-export type XPGrantModifier = z.infer<typeof XPGrantModifierSchema>;
+export type XPGrantModifier = z.input<typeof XPGrantModifierSchema>;
 
 export const XPGrantsSchema = z.object({
   GamePlayed: z.number(),
@@ -46,28 +46,28 @@ export const XPGrantsSchema = z.object({
   Modifier: XPGrantModifierSchema,
   NumAFKRounds: z.number(),
 });
-export type XPGrants = z.infer<typeof XPGrantsSchema>;
+export type XPGrants = z.input<typeof XPGrantsSchema>;
 
 export const MissionDeltaObjectiveSchema = z.object({
   ID: weakUUIDSchema,
   ProgressBefore: z.number(),
   ProgressAfter: z.number(),
 });
-export type MissionDeltaObjective = z.infer<typeof MissionDeltaObjectiveSchema>;
+export type MissionDeltaObjective = z.input<typeof MissionDeltaObjectiveSchema>;
 
 export const MissionDeltaSchema = z.object({
   ID: weakUUIDSchema,
   Objectives: z.record(weakUUIDSchema, z.number()),
   ObjectiveDeltas: z.record(weakUUIDSchema, MissionDeltaObjectiveSchema),
 });
-export type MissionDelta = z.infer<typeof MissionDeltaSchema>;
+export type MissionDelta = z.input<typeof MissionDeltaSchema>;
 
 export const ContractDeltaSchema = z.object({
   ID: weakUUIDSchema,
   TotalXPBefore: z.number(),
   TotalXPAfter: z.number(),
 });
-export type ContractDelta = z.infer<typeof ContractDeltaSchema>;
+export type ContractDelta = z.input<typeof ContractDeltaSchema>;
 
 export const ProcessedMatchSchema = z.object({
   ID: weakUUIDSchema.describe('Match ID'),
@@ -78,7 +78,7 @@ export const ProcessedMatchSchema = z.object({
   ContractDeltas: z.record(weakUUIDSchema, ContractDeltaSchema).nullable(),
   CouldProgressMissions: z.boolean(),
 });
-export type ProcessedMatch = z.infer<typeof ProcessedMatchSchema>;
+export type ProcessedMatch = z.input<typeof ProcessedMatchSchema>;
 
 export const MissionSchema = z.object({
   ID: weakUUIDSchema,
@@ -93,7 +93,7 @@ export const MissionMetadataSchema = z.object({
   WeeklyCheckpoint: dateSchema,
   WeeklyRefillTime: dateSchema,
 });
-export type MissionMetadata = z.infer<typeof MissionMetadataSchema>;
+export type MissionMetadata = z.input<typeof MissionMetadataSchema>;
 
 export const ContractsSchema = z.object({
   Version: z.number(),

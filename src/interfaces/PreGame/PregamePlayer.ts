@@ -7,4 +7,4 @@ export const PregamePlayerSchema = z.object({
   Version: z.number(),
 });
 
-export type PregamePlayerResponse = z.infer<typeof PregamePlayerSchema>;
+export type PregamePlayerResponse = z.input<typeof PregamePlayerSchema>;

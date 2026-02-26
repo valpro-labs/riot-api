@@ -4,4 +4,4 @@ export const EntitlementSchema = z.object({
   entitlements_token: z.string(),
 });
 
-export type EntitlementResponse = z.infer<typeof EntitlementSchema>;
+export type EntitlementResponse = z.input<typeof EntitlementSchema>;

@@ -5,4 +5,4 @@ export const WalletSchema = z.object({
   Balances: z.record(currencyIDSchema, z.number()),
 });
 
-export type WalletResponse = z.infer<typeof WalletSchema>;
+export type WalletResponse = z.input<typeof WalletSchema>;

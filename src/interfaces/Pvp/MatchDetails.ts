@@ -16,14 +16,14 @@ import {
 
 const teamOrPlayerSchema = z.enum(['Blue', 'Red']).or(playerUUIDSchema);
 export const LocationSchema = z.object({ x: z.number(), y: z.number() });
-export type Location = z.infer<typeof LocationSchema>;
+export type Location = z.input<typeof LocationSchema>;
 
 export const PlayerLocationSchema = z.object({
   subject: playerUUIDSchema,
   viewRadians: z.number(),
   location: LocationSchema,
 });
-export type PlayerLocation = z.infer<typeof PlayerLocationSchema>;
+export type PlayerLocation = z.input<typeof PlayerLocationSchema>;
 
 export const EconomySchema = z.object({
   loadoutValue: z.number(),
@@ -32,7 +32,7 @@ export const EconomySchema = z.object({
   remaining: z.number(),
   spent: z.number(),
 });
-export type Economy = z.infer<typeof EconomySchema>;
+export type Economy = z.input<typeof EconomySchema>;
 
 export const KillFinishingDamageSchema = z.object({
   damageType: z.enum(['Weapon', 'Bomb', 'Ability', 'Fall', 'Melee', 'Invalid', '']),
@@ -41,7 +41,7 @@ export const KillFinishingDamageSchema = z.object({
     .or(z.literal('')),
   isSecondaryFireMode: z.boolean(),
 });
-export type KillFinishingDamage = z.infer<typeof KillFinishingDamageSchema>;
+export type KillFinishingDamage = z.input<typeof KillFinishingDamageSchema>;
 
 export const KillSchema = z.object({
   gameTime: z.number(),
@@ -53,16 +53,16 @@ export const KillSchema = z.object({
   playerLocations: z.array(PlayerLocationSchema),
   finishingDamage: KillFinishingDamageSchema,
 });
-export type Kill = z.infer<typeof KillSchema>;
+export type Kill = z.input<typeof KillSchema>;
 
 export const NewPlayerExperienceTimingSchema = z.object({
   idleTimeMillis: z.literal(0),
   objectiveCompleteTimeMillis: z.literal(0),
 });
-export type NewPlayerExperienceTiming = z.infer<typeof NewPlayerExperienceTimingSchema>;
+export type NewPlayerExperienceTiming = z.input<typeof NewPlayerExperienceTimingSchema>;
 
 export const MatchInfoPremierMatchInfoSchema = z.object({});
-export type MatchInfoPremierMatchInfo = z.infer<typeof MatchInfoPremierMatchInfoSchema>;
+export type MatchInfoPremierMatchInfo = z.input<typeof MatchInfoPremierMatchInfoSchema>;
 
 export const MatchInfoSchema = z.object({
   matchId: matchIDSchema,
@@ -96,7 +96,7 @@ export const PlayerAbilityCastsSchema = z.object({
   ability2Casts: z.number(),
   ultimateCasts: z.number(),
 });
-export type PlayerAbilityCasts = z.infer<typeof PlayerAbilityCastsSchema>;
+export type PlayerAbilityCasts = z.input<typeof PlayerAbilityCastsSchema>;
 
 export const PlayerStatsSchema = z.object({
   score: z.number(),
@@ -107,20 +107,20 @@ export const PlayerStatsSchema = z.object({
   playtimeMillis: z.number(),
   abilityCasts: PlayerAbilityCastsSchema.nullable().optional(),
 });
-export type PlayerStats = z.infer<typeof PlayerStatsSchema>;
+export type PlayerStats = z.input<typeof PlayerStatsSchema>;
 
 export const PlayerRoundDamageSchema = z.object({
   round: z.number(),
   receiver: playerUUIDSchema,
   damage: z.number(),
 });
-export type PlayerRoundDamage = z.infer<typeof PlayerRoundDamageSchema>;
+export type PlayerRoundDamage = z.input<typeof PlayerRoundDamageSchema>;
 
 export const XPModificationSchema = z.object({
   Value: z.number(),
   ID: xpModificationIDSchema,
 });
-export type XPModification = z.infer<typeof XPModificationSchema>;
+export type XPModification = z.input<typeof XPModificationSchema>;
 
 export const BehaviorFactorsSchema = z.object({
   afkRounds: z.number(),
@@ -132,25 +132,25 @@ export const BehaviorFactorsSchema = z.object({
   mouseMovement: z.number().optional(),
   stayedInSpawnRounds: z.number().optional(),
 });
-export type BehaviorFactors = z.infer<typeof BehaviorFactorsSchema>;
+export type BehaviorFactors = z.input<typeof BehaviorFactorsSchema>;
 
 export const AdaptiveBotDetailsSchema = z.object({
   adaptiveBotAverageDurationMillisAllAttempts: z.literal(0),
   adaptiveBotAverageDurationMillisFirstAttempt: z.literal(0),
   killDetailsFirstAttempt: z.null(),
 }).merge(NewPlayerExperienceTimingSchema);
-export type AdaptiveBotDetails = z.infer<typeof AdaptiveBotDetailsSchema>;
+export type AdaptiveBotDetails = z.input<typeof AdaptiveBotDetailsSchema>;
 
 export const DefendBombSiteDetailsSchema = z.object({
   success: z.literal(false),
 }).merge(NewPlayerExperienceTimingSchema);
-export type DefendBombSiteDetails = z.infer<typeof DefendBombSiteDetailsSchema>;
+export type DefendBombSiteDetails = z.input<typeof DefendBombSiteDetailsSchema>;
 
 export const NewPlayerExperienceSettingsStatusSchema = z.object({
   isMouseSensitivityDefault: z.boolean(),
   isCrosshairDefault: z.boolean(),
 });
-export type NewPlayerExperienceSettingsStatus = z.infer<typeof NewPlayerExperienceSettingsStatusSchema>;
+export type NewPlayerExperienceSettingsStatus = z.input<typeof NewPlayerExperienceSettingsStatusSchema>;
 
 export const NewPlayerExperienceDetailsSchema = z.object({
   basicMovement: NewPlayerExperienceTimingSchema,
@@ -162,7 +162,7 @@ export const NewPlayerExperienceDetailsSchema = z.object({
   settingStatus: NewPlayerExperienceSettingsStatusSchema,
   versionString: z.literal(''),
 });
-export type NewPlayerExperienceDetails = z.infer<typeof NewPlayerExperienceDetailsSchema>;
+export type NewPlayerExperienceDetails = z.input<typeof NewPlayerExperienceDetailsSchema>;
 
 export const PlayerSchema = z.object({
   subject: playerUUIDSchema,
@@ -191,7 +191,7 @@ export const CoachSchema = z.object({
   subject: playerUUIDSchema,
   teamId: z.enum(['Blue', 'Red']),
 });
-export type Coach = z.infer<typeof CoachSchema>;
+export type Coach = z.input<typeof CoachSchema>;
 
 export const TeamSchema = z.object({
   teamId: teamOrPlayerSchema,
@@ -208,7 +208,7 @@ export const RoundResultPlayerAbilityEffectsSchema = z.object({
   ability2Effects: z.null(),
   ultimateEffects: z.null(),
 });
-export type RoundResultPlayerAbilityEffects = z.infer<typeof RoundResultPlayerAbilityEffectsSchema>;
+export type RoundResultPlayerAbilityEffects = z.input<typeof RoundResultPlayerAbilityEffectsSchema>;
 
 export const RoundResultPlayerDamageSchema = z.object({
   receiver: playerUUIDSchema,
@@ -217,7 +217,7 @@ export const RoundResultPlayerDamageSchema = z.object({
   bodyshots: z.number(),
   headshots: z.number(),
 });
-export type RoundResultPlayerDamage = z.infer<typeof RoundResultPlayerDamageSchema>;
+export type RoundResultPlayerDamage = z.input<typeof RoundResultPlayerDamageSchema>;
 
 export const RoundResultPlayerStatSchema = z.object({
   subject: playerUUIDSchema,
@@ -230,18 +230,18 @@ export const RoundResultPlayerStatSchema = z.object({
   wasPenalized: z.boolean(),
   stayedInSpawn: z.boolean(),
 });
-export type RoundResultPlayerStat = z.infer<typeof RoundResultPlayerStatSchema>;
+export type RoundResultPlayerStat = z.input<typeof RoundResultPlayerStatSchema>;
 
 export const RoundResultPlayerEconomySchema = z.object({
   subject: playerUUIDSchema,
 }).merge(EconomySchema);
-export type RoundResultPlayerEconomy = z.infer<typeof RoundResultPlayerEconomySchema>;
+export type RoundResultPlayerEconomy = z.input<typeof RoundResultPlayerEconomySchema>;
 
 export const RoundResultPlayerScoreSchema = z.object({
   subject: playerUUIDSchema,
   score: z.number(),
 });
-export type RoundResultPlayerScore = z.infer<typeof RoundResultPlayerScoreSchema>;
+export type RoundResultPlayerScore = z.input<typeof RoundResultPlayerScoreSchema>;
 
 export const RoundResultSchema = z.object({
   roundNum: z.number(),

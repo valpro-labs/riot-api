@@ -7,8 +7,8 @@ export const NameServiceItemSchema = z.object({
   GameName: z.string(),
   TagLine: z.string(),
 });
-export type NameServiceItem = z.infer<typeof NameServiceItemSchema>;
+export type NameServiceItem = z.input<typeof NameServiceItemSchema>;
 
 export const NameServiceSchema = z.array(NameServiceItemSchema);
 
-export type NameServiceResponse = z.infer<typeof NameServiceSchema>;
+export type NameServiceResponse = z.input<typeof NameServiceSchema>;

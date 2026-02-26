@@ -7,7 +7,7 @@ export const GunCommonSchema = z.object({
   ChromaID: weakUUIDSchema,
   Attachments: z.array(z.unknown()),
 });
-export type GunCommon = z.infer<typeof GunCommonSchema>;
+export type GunCommon = z.input<typeof GunCommonSchema>;
 
 export const LoadoutGunSchema = z.object({
   ID: weakUUIDSchema,
@@ -15,14 +15,14 @@ export const LoadoutGunSchema = z.object({
   CharmID: weakUUIDSchema.optional(),
   CharmIDLevelID: weakUUIDSchema.optional(),
 }).merge(GunCommonSchema);
-export type LoadoutGun = z.infer<typeof LoadoutGunSchema>;
+export type LoadoutGun = z.input<typeof LoadoutGunSchema>;
 
 export const LoadoutSpraySchema = z.object({
   EquipSlotID: weakUUIDSchema,
   SprayID: weakUUIDSchema,
   SprayLevelID: z.null(),
 });
-export type LoadoutSpray = z.infer<typeof LoadoutSpraySchema>;
+export type LoadoutSpray = z.input<typeof LoadoutSpraySchema>;
 
 export const LoadoutIdentitySchema = z.object({
   PlayerCardID: weakUUIDSchema,
@@ -31,7 +31,7 @@ export const LoadoutIdentitySchema = z.object({
   PreferredLevelBorderID: weakUUIDSchema,
   HideAccountLevel: z.boolean(),
 });
-export type LoadoutIdentity = z.infer<typeof LoadoutIdentitySchema>;
+export type LoadoutIdentity = z.input<typeof LoadoutIdentitySchema>;
 
 export const PlayerLoadoutSchema = z.object({
   Subject: playerUUIDSchema,
@@ -43,4 +43,4 @@ export const PlayerLoadoutSchema = z.object({
 });
 
 
-export type PlayerLoadoutResponse = z.infer<typeof PlayerLoadoutSchema>;
+export type PlayerLoadoutResponse = z.input<typeof PlayerLoadoutSchema>;

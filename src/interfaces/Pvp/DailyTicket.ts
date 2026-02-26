@@ -5,7 +5,7 @@ export const MilestoneSchema = z.object({
   Progress: z.number(),
   BonusApplied: z.boolean(),
 });
-export type Milestone = z.infer<typeof MilestoneSchema>;
+export type Milestone = z.input<typeof MilestoneSchema>;
 
 export const DailyTicketProcessedMatchSchema = z.object({
   ID: weakUUIDSchema,
@@ -17,7 +17,7 @@ export const DailyTicketProcessedMatchSchema = z.object({
   BonusesApplied: z.number(),
   DailyBonusState: z.array(z.boolean()).length(4),
 });
-export type DailyTicketProcessedMatch = z.infer<typeof DailyTicketProcessedMatchSchema>;
+export type DailyTicketProcessedMatch = z.input<typeof DailyTicketProcessedMatchSchema>;
 
 
 export const DailyRewardsSchema = z.object({
@@ -25,7 +25,7 @@ export const DailyRewardsSchema = z.object({
   BonusMilestonesPending: z.number(),
   Milestones: z.array(MilestoneSchema),
 });
-export type DailyRewards = z.infer<typeof DailyRewardsSchema>;
+export type DailyRewards = z.input<typeof DailyRewardsSchema>;
 
 export const DailyTicketSchema = z.object({
   Version: z.number(),
@@ -33,4 +33,4 @@ export const DailyTicketSchema = z.object({
   ProcessedMatches: z.array(DailyTicketProcessedMatchSchema),
 
 });
-export type DailyTicketResponse = z.infer<typeof DailyTicketSchema>;
+export type DailyTicketResponse = z.input<typeof DailyTicketSchema>;

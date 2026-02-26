@@ -6,7 +6,7 @@ export const MatchHistoryItemSchema = z.object({
   GameStartTime: millisSchema,
   QueueID: queueIDSchema,
 });
-export type MatchHistoryItem = z.infer<typeof MatchHistoryItemSchema>;
+export type MatchHistoryItem = z.input<typeof MatchHistoryItemSchema>;
 
 export const MatchHistorySchema = z.object({
   Subject: playerUUIDSchema,

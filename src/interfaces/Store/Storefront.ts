@@ -12,7 +12,7 @@ export const OfferRewardSchema = z.object({
   ItemID: itemIDSchema,
   Quantity: z.number(),
 });
-export type OfferReward = z.infer<typeof OfferRewardSchema>;
+export type OfferReward = z.input<typeof OfferRewardSchema>;
 
 export const OfferSchema = z.object({
   OfferID: z.string(),
@@ -28,7 +28,7 @@ export const BundleItemInfoSchema = z.object({
   ItemID: itemIDSchema,
   Amount: z.number(),
 });
-export type BundleItemInfo = z.infer<typeof BundleItemInfoSchema>;
+export type BundleItemInfo = z.input<typeof BundleItemInfoSchema>;
 
 export const BundleItemSchema = z.object({
   Item: BundleItemInfoSchema,
@@ -38,7 +38,7 @@ export const BundleItemSchema = z.object({
   DiscountedPrice: z.number(),
   IsPromoItem: z.boolean(),
 });
-export type BundleItem = z.infer<typeof BundleItemSchema>;
+export type BundleItem = z.input<typeof BundleItemSchema>;
 
 export const BundleItemOfferSchema = z.object({
   BundleItemOfferID: weakUUIDSchema,
@@ -46,7 +46,7 @@ export const BundleItemOfferSchema = z.object({
   DiscountPercent: z.number(),
   DiscountedCost: z.record(weakUUIDSchema, z.number()),
 });
-export type BundleItemOffer = z.infer<typeof BundleItemOfferSchema>;
+export type BundleItemOffer = z.input<typeof BundleItemOfferSchema>;
 
 export const BundleSchema = z.object({
   ID: weakUUIDSchema,
@@ -91,12 +91,12 @@ export const UpgradeCurrencyOfferSchema = z.object({
   Offer: OfferSchema,
   DiscountedPercent: z.number(),
 });
-export type UpgradeCurrencyOffer = z.infer<typeof UpgradeCurrencyOfferSchema>;
+export type UpgradeCurrencyOffer = z.input<typeof UpgradeCurrencyOfferSchema>;
 
 export const UpgradeCurrencyStoreSchema = z.object({
   UpgradeCurrencyOffers: z.array(UpgradeCurrencyOfferSchema),
 });
-export type UpgradeCurrencyStore = z.infer<typeof UpgradeCurrencyStoreSchema>;
+export type UpgradeCurrencyStore = z.input<typeof UpgradeCurrencyStoreSchema>;
 
 export const AccessoryStoreOfferSchema = z.object({
   Offer: OfferSchema,
@@ -109,13 +109,13 @@ export const AccessoryStoreSchema = z.object({
   AccessoryStoreRemainingDurationInSeconds: z.number(),
   StorefrontID: weakUUIDSchema,
 });
-export type AccessoryStore = z.infer<typeof AccessoryStoreSchema>;
+export type AccessoryStore = z.input<typeof AccessoryStoreSchema>;
 
 export const BonusStoreSchema = z.object({
   BonusStoreOffers: z.array(BonusOfferSchema),
   BonusStoreRemainingDurationInSeconds: z.number(),
 });
-export type BonusStore = z.infer<typeof BonusStoreSchema>;
+export type BonusStore = z.input<typeof BonusStoreSchema>;
 
 export const StorefrontSchema = z.object({
   FeaturedBundle: FeaturedBundleSchema,

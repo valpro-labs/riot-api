@@ -22,7 +22,7 @@ export const PlayerIdentitySchema = z.object({
   Incognito: z.boolean(),
   HideAccountLevel: z.boolean(),
 });
-export type PlayerIdentity = z.infer<typeof PlayerIdentitySchema>;
+export type PlayerIdentity = z.input<typeof PlayerIdentitySchema>;
 
 export const SeasonalBadgeInfoSchema = z.object({
   SeasonID: seasonIDSchema.or(z.literal('')),
@@ -31,7 +31,7 @@ export const SeasonalBadgeInfoSchema = z.object({
   Rank: z.number(),
   LeaderboardRank: z.number(),
 });
-export type SeasonalBadgeInfo = z.infer<typeof SeasonalBadgeInfoSchema>;
+export type SeasonalBadgeInfo = z.input<typeof SeasonalBadgeInfoSchema>;
 
 export const PregamePlayerEntrySchema = z.object({
   Subject: playerUUIDSchema,
@@ -43,19 +43,19 @@ export const PregamePlayerEntrySchema = z.object({
   SeasonalBadgeInfo: SeasonalBadgeInfoSchema,
   IsCaptain: z.boolean(),
 });
-export type PregamePlayerEntry = z.infer<typeof PregamePlayerEntrySchema>;
+export type PregamePlayerEntry = z.input<typeof PregamePlayerEntrySchema>;
 
 export const PregameTeamSchema = z.object({
   TeamID: z.enum(['Blue', 'Red']).or(playerUUIDSchema),
   Players: z.array(PregamePlayerEntrySchema),
 });
-export type PregameTeam = z.infer<typeof PregameTeamSchema>;
+export type PregameTeam = z.input<typeof PregameTeamSchema>;
 
 export const PregameMatchRosterMetadataSchema = z.null();
-export type PregameMatchRosterMetadata = z.infer<typeof PregameMatchRosterMetadataSchema>;
+export type PregameMatchRosterMetadata = z.input<typeof PregameMatchRosterMetadataSchema>;
 
 export const PregameMatchTournamentMetadataSchema = z.null();
-export type PregameMatchTournamentMetadata = z.infer<typeof PregameMatchTournamentMetadataSchema>;
+export type PregameMatchTournamentMetadata = z.input<typeof PregameMatchTournamentMetadataSchema>;
 
 export const PregameMatchSchema = z.object({
   ID: pregameIDSchema,

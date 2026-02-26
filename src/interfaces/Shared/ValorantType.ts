@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 export const RegionSchema = z.enum(['na', 'latam', 'br', 'eu', 'ap', 'kr']).or(z.string());
-export type Region = z.infer<typeof RegionSchema>;
+export type Region = z.input<typeof RegionSchema>;
 
 export const ShardSchema = z.enum(['na', 'pbe', 'eu', 'ap', 'kr']).or(z.string());
-export type Shard = z.infer<typeof ShardSchema>;
+export type Shard = z.input<typeof ShardSchema>;
 
 export const CURRENCY_TYPES = {
   VALORANT_POINTS: '85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741',
@@ -14,7 +14,7 @@ export const CURRENCY_TYPES = {
 } as const;
 
 export const CurrencyTypeIDSchema = z.nativeEnum(CURRENCY_TYPES).or(z.string().uuid());
-export type CurrencyTypeID = z.infer<typeof CurrencyTypeIDSchema>;
+export type CurrencyTypeID = z.input<typeof CurrencyTypeIDSchema>;
 
 export const ITEM_TYPES = {
   AGENT: '01bb38e1-da47-4e6a-9b3d-945fe4655707',
@@ -29,4 +29,4 @@ export const ITEM_TYPES = {
 } as const;
 
 export const ItemTypeIDSchema = z.nativeEnum(ITEM_TYPES).or(z.string().uuid());
-export type ItemTypeID = z.infer<typeof ItemTypeIDSchema>;
+export type ItemTypeID = z.input<typeof ItemTypeIDSchema>;

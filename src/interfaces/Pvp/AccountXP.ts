@@ -5,13 +5,13 @@ export const AccountXPProgressSchema = z.object({
   Level: z.number(),
   XP: z.number(),
 });
-export type AccountXPProgress = z.infer<typeof AccountXPProgressSchema>;
+export type AccountXPProgress = z.input<typeof AccountXPProgressSchema>;
 
 export const XPSourceSchema = z.object({
   ID: z.enum(['time-played', 'match-win', 'first-win-of-the-day']),
   Amount: z.number(),
 });
-export type XPSource = z.infer<typeof XPSourceSchema>;
+export type XPSource = z.input<typeof XPSourceSchema>;
 
 export const AccountXPHistoryEntrySchema = z.object({
   ID: z.string().describe('Match ID'),
@@ -22,7 +22,7 @@ export const AccountXPHistoryEntrySchema = z.object({
   XPSources: z.array(XPSourceSchema),
   XPMultipliers: z.array(z.unknown()),
 });
-export type AccountXPHistoryEntry = z.infer<typeof AccountXPHistoryEntrySchema>;
+export type AccountXPHistoryEntry = z.input<typeof AccountXPHistoryEntrySchema>;
 
 export const AccountXPSchema = z.object({
   Version: z.number(),

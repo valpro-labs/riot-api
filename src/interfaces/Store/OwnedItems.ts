@@ -6,11 +6,11 @@ export const OwnedEntitlementSchema = z.object({
   ItemID: itemIDSchema,
   Tiers: z.string().optional(),
 });
-export type OwnedEntitlement = z.infer<typeof OwnedEntitlementSchema>;
+export type OwnedEntitlement = z.input<typeof OwnedEntitlementSchema>;
 
 
 export const OwnedItemsSchema = z.object({
   Entitlements: z.array(OwnedEntitlementSchema),
 
 });
-export type OwnedItemsResponse = z.infer<typeof OwnedItemsSchema>;
+export type OwnedItemsResponse = z.input<typeof OwnedItemsSchema>;

@@ -8,4 +8,4 @@ export const RiotGeoSchema = z.object({
   }),
 });
 
-export type RiotGeoResponse = z.infer<typeof RiotGeoSchema>;
+export type RiotGeoResponse = z.input<typeof RiotGeoSchema>;
