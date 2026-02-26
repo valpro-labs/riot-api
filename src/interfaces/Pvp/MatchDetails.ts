@@ -88,7 +88,7 @@ export const MatchInfoSchema = z.object({
   partyRRPenalties: z.record(z.string(), z.number()).optional(),
   shouldMatchDisablePenalties: z.boolean(),
 });
-export type MatchInfo = z.infer<typeof MatchInfoSchema>;
+export type MatchInfo = z.input<typeof MatchInfoSchema>;
 
 export const PlayerAbilityCastsSchema = z.object({
   grenadeCasts: z.number(),
@@ -185,7 +185,7 @@ export const PlayerSchema = z.object({
   behaviorFactors: BehaviorFactorsSchema.optional(),
   newPlayerExperienceDetails: NewPlayerExperienceDetailsSchema.optional(),
 });
-export type Player = z.infer<typeof PlayerSchema>;
+export type Player = z.input<typeof PlayerSchema>;
 
 export const CoachSchema = z.object({
   subject: playerUUIDSchema,
@@ -200,7 +200,7 @@ export const TeamSchema = z.object({
   roundsWon: z.number(),
   numPoints: z.number(),
 });
-export type Team = z.infer<typeof TeamSchema>;
+export type Team = z.input<typeof TeamSchema>;
 
 export const RoundResultPlayerAbilityEffectsSchema = z.object({
   grenadeEffects: z.null(),
@@ -262,7 +262,7 @@ export const RoundResultSchema = z.object({
   playerEconomies: z.array(RoundResultPlayerEconomySchema).nullable(),
   playerScores: z.array(RoundResultPlayerScoreSchema).nullable(),
 });
-export type RoundResult = z.infer<typeof RoundResultSchema>;
+export type RoundResult = z.input<typeof RoundResultSchema>;
 
 export const MatchDetailsSchema = z.object({
   matchInfo: MatchInfoSchema,

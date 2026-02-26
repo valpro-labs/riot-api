@@ -15,7 +15,7 @@ export const CompetitiveMatchUpdateSchema = z.object({
   CompetitiveMovement: z.literal('MOVEMENT_UNKNOWN'),
   AFKPenalty: z.number(),
 });
-export type CompetitiveMatchUpdate = z.infer<typeof CompetitiveMatchUpdateSchema>;
+export type CompetitiveMatchUpdate = z.input<typeof CompetitiveMatchUpdateSchema>;
 
 export const CompetitiveUpdatesSchema = z.object({
   Version: z.number(),

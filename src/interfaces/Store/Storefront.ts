@@ -21,7 +21,7 @@ export const OfferSchema = z.object({
   Cost: z.record(currencyIDSchema, z.number()),
   Rewards: z.array(OfferRewardSchema),
 });
-export type Offer = z.infer<typeof OfferSchema>;
+export type Offer = z.input<typeof OfferSchema>;
 
 export const BundleItemInfoSchema = z.object({
   ItemTypeID: itemTypeIDSchema,
@@ -60,7 +60,7 @@ export const BundleSchema = z.object({
   DurationRemainingInSeconds: z.number(),
   WholesaleOnly: z.boolean(),
 });
-export type Bundle = z.infer<typeof BundleSchema>;
+export type Bundle = z.input<typeof BundleSchema>;
 
 export const BonusOfferSchema = z.object({
   BonusOfferID: weakUUIDSchema,
@@ -69,21 +69,21 @@ export const BonusOfferSchema = z.object({
   DiscountCosts: z.record(weakUUIDSchema, z.number()),
   IsSeen: z.boolean(),
 });
-export type BonusOffer = z.infer<typeof BonusOfferSchema>;
+export type BonusOffer = z.input<typeof BonusOfferSchema>;
 
 export const FeaturedBundleSchema = z.object({
   Bundle: BundleSchema,
   Bundles: z.array(BundleSchema),
   BundleRemainingDurationInSeconds: z.number(),
 });
-export type FeaturedBundle = z.infer<typeof FeaturedBundleSchema>;
+export type FeaturedBundle = z.input<typeof FeaturedBundleSchema>;
 
 export const SkinsPanelLayoutSchema = z.object({
   SingleItemOffers: z.array(itemIDSchema),
   SingleItemStoreOffers: z.array(OfferSchema),
   SingleItemOffersRemainingDurationInSeconds: z.number(),
 });
-export type SkinsPanelLayout = z.infer<typeof SkinsPanelLayoutSchema>;
+export type SkinsPanelLayout = z.input<typeof SkinsPanelLayoutSchema>;
 
 export const UpgradeCurrencyOfferSchema = z.object({
   OfferID: weakUUIDSchema,
@@ -102,7 +102,7 @@ export const AccessoryStoreOfferSchema = z.object({
   Offer: OfferSchema,
   ContractID: weakUUIDSchema,
 });
-export type AccessoryStoreOffer = z.infer<typeof AccessoryStoreOfferSchema>;
+export type AccessoryStoreOffer = z.input<typeof AccessoryStoreOfferSchema>;
 
 export const AccessoryStoreSchema = z.object({
   AccessoryStoreOffers: z.array(AccessoryStoreOfferSchema),

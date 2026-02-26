@@ -21,7 +21,7 @@ export const ContractSchema = z.object({
   ProgressionLevelReached: z.number(),
   ProgressionTowardsNextLevel: z.number(),
 });
-export type Contract = z.infer<typeof ContractSchema>;
+export type Contract = z.input<typeof ContractSchema>;
 
 export const XPGrantModifierEntrySchema = z.object({
   Value: z.number(),
@@ -86,7 +86,7 @@ export const MissionSchema = z.object({
   Complete: z.boolean(),
   ExpirationTime: dateSchema,
 });
-export type Mission = z.infer<typeof MissionSchema>;
+export type Mission = z.input<typeof MissionSchema>;
 
 export const MissionMetadataSchema = z.object({
   NPECompleted: z.boolean(),
