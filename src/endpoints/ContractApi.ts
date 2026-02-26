@@ -3,7 +3,8 @@ import type { ContractsResponse } from '../interfaces/Contract/Contracts';
 
 import { RiotClient } from '../RiotClient';
 
-import type { Region } from '../interfaces/ValorantType';
+import type { Region } from '../interfaces/Shared/ValorantType';
+
 
 export class ContractApi {
   private client: RiotClient;

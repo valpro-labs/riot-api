@@ -13,8 +13,9 @@ export * from './interfaces/Auth/RiotGeo';
 export * from './interfaces/Contract/Contracts';
 export * from './interfaces/Pvp/DailyTicket';
 
-export * from './interfaces/IAuthProvider';
-export * from './interfaces/IVersionProvider';
+export * from './interfaces/Base/IAuthProvider';
+export * from './interfaces/Base/IVersionProvider';
+
 export * from './interfaces/General/NewsFeed';
 
 export * from './interfaces/Store/OwnedItems';
@@ -29,10 +30,12 @@ export * from './interfaces/Pvp/MatchDetails';
 export * from './interfaces/Pvp/MatchHistory';
 export * from './interfaces/Pvp/NameService';
 export * from './interfaces/Pvp/PlayerLoadout';
-export * from './interfaces/RiotClientConfig';
+export * from './interfaces/Base/RiotClientConfig';
+
 export * from './interfaces/Shared/Common';
 export * from './interfaces/Store/Storefront';
 export * from './interfaces/Store/Wallet';
-export * from './interfaces/ValorantType';
+export * from './interfaces/Shared/ValorantType';
+
 
 export * from './auth';

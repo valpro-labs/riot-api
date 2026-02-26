@@ -8,8 +8,9 @@ import { ContractApi } from './endpoints/ContractApi';
 import { PreGameApi } from './endpoints/PreGameApi';
 import { NewsFeedApi } from './endpoints/NewsFeedApi';
 
-import { IAuthProvider } from './interfaces/IAuthProvider';
-import { IVersionProvider } from './interfaces/IVersionProvider';
+import { IAuthProvider } from './interfaces/Base/IAuthProvider';
+import { IVersionProvider } from './interfaces/Base/IVersionProvider';
+
 
 interface RiotApiConfig {
   authProvider: IAuthProvider;

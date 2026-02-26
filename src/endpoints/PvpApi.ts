@@ -6,7 +6,8 @@ import type { MatchHistoryResponse } from '../interfaces/Pvp/MatchHistory';
 import type { MatchDetailsResponse } from '../interfaces/Pvp/MatchDetails';
 import type { NameServiceResponse } from '../interfaces/Pvp/NameService';
 
-import type { Region } from '../interfaces/ValorantType';
+import type { Region } from '../interfaces/Shared/ValorantType';
+
 import type { DailyTicketResponse } from '../interfaces/Pvp/DailyTicket';
 
 

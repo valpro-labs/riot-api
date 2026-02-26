@@ -1,8 +1,8 @@
 import type { StorefrontResponse } from '../interfaces/Store/Storefront';
 import type { WalletResponse } from '../interfaces/Store/Wallet';
 
-import type { Region } from '../interfaces/ValorantType';
-import { ItemTypeID } from '../interfaces/ValorantType';
+import type { Region, ItemTypeID } from '../interfaces/Shared/ValorantType';
+
 import { OwnedItemsResponse } from '../interfaces/Store/OwnedItems';
 
 

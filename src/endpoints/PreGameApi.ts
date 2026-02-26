@@ -3,7 +3,8 @@ import type { PregameMatchResponse } from '../interfaces/PreGame/PregameMatch';
 import type { SelectCharacterResponse } from '../interfaces/PreGame/SelectCharacter';
 import type { LockCharacterResponse } from '../interfaces/PreGame/LockCharacter';
 
-import type { Region } from '../interfaces/ValorantType';
+import type { Region } from '../interfaces/Shared/ValorantType';
+
 
 import { RiotClient } from '../RiotClient';
 

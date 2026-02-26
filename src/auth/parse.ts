@@ -8,7 +8,8 @@
 
 import { jwtDecode } from "jwt-decode";
 
-import { AuthRedirectData } from "../interfaces/IAuthProvider";
+import { AuthRedirectData } from "../interfaces/Base/IAuthProvider";
+
 
 interface JWTPayload {
   sub: string;
