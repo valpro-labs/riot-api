@@ -1,3 +1,3 @@
 export interface IVersionProvider {
-    getRiotClientVersion(): Promise<string>;
+  getRiotClientVersion(): Promise<string>;
 }

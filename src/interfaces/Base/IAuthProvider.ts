@@ -1,10 +1,10 @@
 export interface AuthRedirectData {
-    accessToken: string;
-    idToken: string;
-    expiresAt: number;
-    puuid: string;
+  accessToken: string;
+  idToken: string;
+  expiresAt: number;
+  puuid: string;
 }
 
 export interface IAuthProvider {
-    getAuthData(): Promise<AuthRedirectData | null>;
+  getAuthData(): Promise<AuthRedirectData | null>;
 }
