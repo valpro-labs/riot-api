@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import type { NewsFeedParams, NewsFeedResponse } from '../interfaces/NewsFeed';
+import type { NewsFeedParams, NewsFeedResponse } from '../interfaces/General/NewsFeed';
+
 
 const BASE_URL =
   'https://content.publishing.riotgames.com/publishing-content/v2.0/public';

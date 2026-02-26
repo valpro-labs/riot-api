@@ -11,11 +11,14 @@ export * from './interfaces/Auth/Entitlement';
 export * from './interfaces/Auth/PlayerInfo';
 export * from './interfaces/Auth/RiotGeo';
 export * from './interfaces/Contract/Contracts';
-export * from './interfaces/DailyTicket';
+export * from './interfaces/Pvp/DailyTicket';
+
 export * from './interfaces/IAuthProvider';
 export * from './interfaces/IVersionProvider';
-export * from './interfaces/NewsFeed';
-export * from './interfaces/OwnedItems';
+export * from './interfaces/General/NewsFeed';
+
+export * from './interfaces/Store/OwnedItems';
+
 export * from './interfaces/PreGame/LockCharacter';
 export * from './interfaces/PreGame/PregameMatch';
 export * from './interfaces/PreGame/PregamePlayer';

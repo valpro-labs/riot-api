@@ -7,7 +7,8 @@ import type { MatchDetailsResponse } from '../interfaces/Pvp/MatchDetails';
 import type { NameServiceResponse } from '../interfaces/Pvp/NameService';
 
 import type { Region } from '../interfaces/ValorantType';
-import type { DailyTicketResponse } from '../interfaces/DailyTicket';
+import type { DailyTicketResponse } from '../interfaces/Pvp/DailyTicket';
+
 
 import { RiotClient } from '../RiotClient';
 

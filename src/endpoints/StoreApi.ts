@@ -3,7 +3,8 @@ import type { WalletResponse } from '../interfaces/Store/Wallet';
 
 import type { Region } from '../interfaces/ValorantType';
 import { ItemTypeID } from '../interfaces/ValorantType';
-import { OwnedItemsResponse } from '../interfaces/OwnedItems';
+import { OwnedItemsResponse } from '../interfaces/Store/OwnedItems';
+
 
 import { RiotClient } from '../RiotClient';
 
