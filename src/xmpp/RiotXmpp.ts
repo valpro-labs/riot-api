@@ -88,6 +88,8 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
     await this.client.sendXmlAndRead(rxep());
 
     await this.client.sendXmlAndRead(setupSession());
+
+    console.log('Handshake finished');
   }
 
   private resetHeartbeat() {
