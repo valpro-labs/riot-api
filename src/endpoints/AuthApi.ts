@@ -1,3 +1,4 @@
+import { PASTokenResponse } from '../interfaces/Auth/PASToken';
 import type { PlayerInfoResponse } from '../interfaces/Auth/PlayerInfo';
 import type { RiotGeoResponse } from '../interfaces/Auth/RiotGeo';
 
@@ -39,6 +40,24 @@ export class AuthApi {
         data: {
           id_token: authData.idToken,
         }
+      },
+    );
+  }
+
+  /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/pas-token)
+   */
+  public async getPasToken() {
+    const authData = await this.client.getAuthProvider().getAuthData();
+
+    if (!authData) {
+      throw new Error('No authentication data available');
+    }
+
+    return this.client.request<PASTokenResponse>(
+      'https://riot-geo.pas.si.riotgames.com/pas/v1/service/chat',
+      {
+        method: 'GET',
       },
     );
   }
