@@ -37,5 +37,6 @@ export * from './interfaces/Store/Storefront';
 export * from './interfaces/Store/Wallet';
 export * from './interfaces/Shared/ValorantType';
 
-
 export * from './auth';
+
+export * from './xmpp';
