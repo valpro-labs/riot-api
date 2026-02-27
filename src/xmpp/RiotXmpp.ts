@@ -11,6 +11,8 @@ import {
   presence,
   fetchFriends,
 } from './XmlObjects';
+import { ISocketProvider } from './socket/ISocketProvider';
+import { SocketProvider } from './socket/SocketProvider';
 
 import { parsePASToken } from '../auth';
 import { IXmppAuthProvider } from '../types/Base/IXmppAuthProvider';
@@ -36,10 +38,10 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
   private pasToken = '';
   private regionData: XmppRegionObject | null = null;
 
-  constructor(authProvider: IXmppAuthProvider) {
+  constructor(authProvider: IXmppAuthProvider, socketProvider?: ISocketProvider) {
     super();
     this.authProvider = authProvider;
-    this.client = new XmppClient();
+    this.client = new XmppClient(socketProvider ?? new SocketProvider());
 
     this.client.on('error', (err) => {
       this.emit('error', err);
@@ -53,6 +55,7 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
         this.emit('error', e);
       }
     });
+
   }
 
   public async connect() {

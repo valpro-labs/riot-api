@@ -1,6 +1,7 @@
-import * as tls from 'tls';
 import EventEmitter from 'eventemitter3';
 import { XMLParser, XMLBuilder } from 'fast-xml-parser';
+import { ISocketProvider, ConnectOptions } from './socket/ISocketProvider';
+import { ITlsSocket } from './socket/ITlsSocket';
 
 export interface XmppClientEvents {
   error: (err: Error) => void;
@@ -22,31 +23,37 @@ const xmlBuilder = new XMLBuilder({
 });
 
 export class XmppClient extends EventEmitter<XmppClientEvents> {
-  protected socket: tls.TLSSocket | null = null;
+  protected socket: ITlsSocket | null = null;
   private bufferedMessage = '';
+  private readonly provider: ISocketProvider;
 
-  constructor() {
+  constructor(provider: ISocketProvider) {
     super();
+    this.provider = provider;
   }
 
-  public connect(options: tls.ConnectionOptions): Promise<void> {
+  public connect(options: ConnectOptions): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.socket = tls.connect(options, () => {
-        resolve();
-      });
+      this.provider
+        .connect(options)
+        .then((socket) => {
+          this.socket = socket;
 
-      this.socket.on('data', (data) => {
-        this.handleData(data.toString());
-      });
+          socket.on('data', (data) => {
+            this.handleData(data.toString());
+          });
 
-      this.socket.on('error', (err) => {
-        this.emit('error', err);
-        reject(err);
-      });
+          socket.on('error', (err) => {
+            this.emit('error', err);
+          });
 
-      this.socket.on('end', () => {
-        this.emit('closed');
-      });
+          socket.on('end', () => {
+            this.emit('closed');
+          });
+
+          resolve();
+        })
+        .catch(reject);
     });
   }
 

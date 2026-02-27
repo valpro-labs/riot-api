@@ -21,6 +21,14 @@
     "set-cookie-parser": "^3.0.1",
     "zod": "^4.3.6"
   },
+  "peerDependencies": {
+    "react-native-tcp-socket": "*"
+  },
+  "peerDependenciesMeta": {
+    "react-native-tcp-socket": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^25.3.0",
