@@ -1,6 +1,5 @@
 import { ISocketProvider, ConnectOptions } from './ISocketProvider';
 import { ITlsSocket } from './ITlsSocket';
-// @ts-ignore: React Native only module, may not be present in pure Node.js projects
 import TcpSocket from 'react-native-tcp-socket';
 
 /**
