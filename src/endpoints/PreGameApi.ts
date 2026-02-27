@@ -6,12 +6,12 @@ import type { LockCharacterResponse } from '../interfaces/PreGame/LockCharacter'
 import type { Region } from '../interfaces/Shared/ValorantType';
 
 
-import { RiotClient } from '../RiotClient';
+import { IRiotClient } from '../interfaces/Base/IRiotClient';
 
 export class PreGameApi {
-  private client: RiotClient;
+  private client: IRiotClient;
 
-  constructor(client: RiotClient) {
+  constructor(client: IRiotClient) {
     this.client = client;
   }
 

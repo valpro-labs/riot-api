@@ -8,14 +8,7 @@ import { ContractApi } from './endpoints/ContractApi';
 import { PreGameApi } from './endpoints/PreGameApi';
 import { NewsFeedApi } from './endpoints/NewsFeedApi';
 
-import { IAuthProvider } from './interfaces/Base/IAuthProvider';
-import { IVersionProvider } from './interfaces/Base/IVersionProvider';
-
-
-interface RiotApiConfig {
-  authProvider: IAuthProvider;
-  versionProvider: IVersionProvider;
-}
+import { RiotClientConfig } from './interfaces/Base/RiotClientConfig';
 
 class RiotApi {
   private client: RiotClient;
@@ -27,7 +20,7 @@ class RiotApi {
   public preGameApi: PreGameApi;
   public newsFeedApi: NewsFeedApi;
 
-  constructor(config: RiotApiConfig) {
+  constructor(config: RiotClientConfig) {
     this.client = new RiotClient({
       authProvider: config.authProvider,
       versionProvider: config.versionProvider,
@@ -44,4 +37,4 @@ class RiotApi {
 
 }
 
-export { RiotApi, RiotApiConfig };
+export { RiotApi };

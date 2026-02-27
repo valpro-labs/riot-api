@@ -6,9 +6,10 @@ import type { Region, Shard } from './interfaces/Shared/ValorantType';
 import { RiotClientConfig } from './interfaces/Base/RiotClientConfig';
 import { IAuthProvider } from './interfaces/Base/IAuthProvider';
 import { IVersionProvider } from './interfaces/Base/IVersionProvider';
+import { IRiotClient } from './interfaces/Base/IRiotClient';
 
 
-export class RiotClient {
+export class RiotClient implements IRiotClient {
   private axiosInstance: AxiosInstance;
   private config: RiotClientConfig;
   private entitlements: EntitlementResponse | null = null;
@@ -159,7 +160,7 @@ export class RiotClient {
     return response.data;
   }
 
-  public async requestPD<T>(region: Region, resource: Resource, config: AxiosRequestConfig = { method: 'GET' }): Promise<T> {
+  public async requestPD<T>(region: Region, resource: string, config: AxiosRequestConfig = { method: 'GET' }): Promise<T> {
     const shard = this.getShard(region);
     const url = `https://pd.${shard}.a.pvp.net/${resource}`;
 
@@ -174,7 +175,7 @@ export class RiotClient {
     });
   }
 
-  public async requestShared<T>(region: Region, resource: Resource, config: AxiosRequestConfig = {}): Promise<T> {
+  public async requestShared<T>(region: Region, resource: string, config: AxiosRequestConfig = {}): Promise<T> {
     const shard = this.getShard(region);
     const url = `https://shared.${shard}.a.pvp.net/${resource}`;
 
@@ -189,7 +190,7 @@ export class RiotClient {
     });
   }
 
-  public async requestGLZ<T>(region: Region, resource: Resource, config: AxiosRequestConfig = {}): Promise<T> {
+  public async requestGLZ<T>(region: Region, resource: string, config: AxiosRequestConfig = {}): Promise<T> {
     const shard = this.getShard(region);
     const url = `https://glz-${region}-1.${shard}.a.pvp.net/${resource}`;
 

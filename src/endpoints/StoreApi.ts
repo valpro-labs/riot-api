@@ -6,12 +6,12 @@ import type { Region, ItemTypeID } from '../interfaces/Shared/ValorantType';
 import { OwnedItemsResponse } from '../interfaces/Store/OwnedItems';
 
 
-import { RiotClient } from '../RiotClient';
+import { IRiotClient } from '../interfaces/Base/IRiotClient';
 
 export class StoreApi {
-  private client: RiotClient;
+  private client: IRiotClient;
 
-  constructor(client: RiotClient) {
+  constructor(client: IRiotClient) {
     this.client = client;
   }
 

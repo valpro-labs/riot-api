@@ -1,15 +1,15 @@
 
 import type { ContractsResponse } from '../interfaces/Contract/Contracts';
 
-import { RiotClient } from '../RiotClient';
+import { IRiotClient } from '../interfaces/Base/IRiotClient';
 
 import type { Region } from '../interfaces/Shared/ValorantType';
 
 
 export class ContractApi {
-  private client: RiotClient;
+  private client: IRiotClient;
 
-  constructor(client: RiotClient) {
+  constructor(client: IRiotClient) {
     this.client = client;
   }
 

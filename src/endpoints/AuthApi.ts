@@ -2,12 +2,12 @@ import { PASTokenResponse } from '../interfaces/Auth/PASToken';
 import type { PlayerInfoResponse } from '../interfaces/Auth/PlayerInfo';
 import type { RiotGeoResponse } from '../interfaces/Auth/RiotGeo';
 
-import { RiotClient } from '../RiotClient';
+import { IRiotClient } from '../interfaces/Base/IRiotClient';
 
 export class AuthApi {
-  private client: RiotClient;
+  private client: IRiotClient;
 
-  constructor(client: RiotClient) {
+  constructor(client: IRiotClient) {
     this.client = client;
   }
 

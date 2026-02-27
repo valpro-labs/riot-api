@@ -16,6 +16,7 @@ export * from './interfaces/Pvp/DailyTicket';
 export * from './interfaces/Base/IAuthProvider';
 export * from './interfaces/Base/IVersionProvider';
 export * from './interfaces/Base/IXmppAuthProvider';
+export * from './interfaces/Base/IRiotClient';
 
 export * from './interfaces/General/NewsFeed';
 
