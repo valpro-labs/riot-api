@@ -13,6 +13,7 @@ import {
 } from './XmlObjects';
 
 import { parsePASToken } from '../auth';
+import { IXmppAuthProvider } from '../interfaces/Base/IXmppAuthProvider';
 
 interface XmppEvents {
   error: (err: Error | unknown) => void;
@@ -29,53 +30,58 @@ interface XmppRegionObject {
 export class RiotXmpp extends EventEmitter<XmppEvents> {
   private client: XmppClient;
   private heartbeatInterval: NodeJS.Timeout | null = null;
+  private authProvider: IXmppAuthProvider;
 
   private rsoToken = '';
   private pasToken = '';
   private regionData: XmppRegionObject | null = null;
 
-  constructor() {
+  constructor(authProvider: IXmppAuthProvider) {
     super();
+    this.authProvider = authProvider;
     this.client = new XmppClient();
 
     this.client.on('error', (err) => {
       this.emit('error', err);
     });
-    this.client.on('closed', () => {
+    this.client.on('closed', async () => {
       this.stopHeartbeat();
       this.emit('closed');
+      try {
+        await this.connect();
+      } catch (e) {
+        this.emit('error', e);
+      }
     });
   }
 
-  public async establishXMPPConnection(RSO: string, PAS: string) {
-    try {
-      const pasData = parsePASToken(PAS);
-      const lookupName = pasData.affinity;
-      const region = XmppRegions.findByLookupName(lookupName);
+  public async connect() {
+    const { rso, pas } = await this.authProvider.getXmppTokens();
 
-      if (!region) {
-        throw new Error(`Unsupported region lookup name: ${lookupName}`);
-      }
+    const pasData = parsePASToken(pas);
+    const lookupName = pasData.affinity;
+    const region = XmppRegions.findByLookupName(lookupName);
 
-      this.rsoToken = RSO;
-      this.pasToken = PAS;
-      this.regionData = region;
-
-      const host = XmppRegions.getHost(region);
-      await this.client.connect({ port: 5223, host });
-      console.log(`Connected to ${lookupName} (${host})`);
-
-      await this.performHandshake();
-
-      this.client.on('stanza', (stanza: any) => {
-        this.handleStanza(stanza);
-      });
-      this.resetHeartbeat();
-      this.emit('ready');
-    } catch (e) {
-      console.error('Failed to establish XMPP connection:', e);
-      this.emit('error', e);
+    if (!region) {
+      throw new Error(`Unsupported region lookup name: ${lookupName}`);
     }
+
+    this.rsoToken = rso;
+    this.pasToken = pas;
+    this.regionData = region;
+
+    const host = XmppRegions.getHost(region);
+    await this.client.connect({ port: 5223, host });
+    console.log(`Connected to ${lookupName} (${host})`);
+
+    await this.performHandshake();
+
+    this.client.removeAllListeners('stanza');
+    this.client.on('stanza', (stanza: any) => {
+      this.handleStanza(stanza);
+    });
+    this.resetHeartbeat();
+    this.emit('ready');
   }
 
   private async performHandshake() {
