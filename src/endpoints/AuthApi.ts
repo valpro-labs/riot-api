@@ -1,8 +1,8 @@
-import { PASTokenResponse } from '../interfaces/Auth/PASToken';
-import type { PlayerInfoResponse } from '../interfaces/Auth/PlayerInfo';
-import type { RiotGeoResponse } from '../interfaces/Auth/RiotGeo';
+import { PASTokenResponse } from '../types/Auth/PASToken';
+import type { PlayerInfoResponse } from '../types/Auth/PlayerInfo';
+import type { RiotGeoResponse } from '../types/Auth/RiotGeo';
 
-import { IRiotClient } from '../interfaces/Base/IRiotClient';
+import { IRiotClient } from '../types/Base/IRiotClient';
 
 export class AuthApi {
   private client: IRiotClient;

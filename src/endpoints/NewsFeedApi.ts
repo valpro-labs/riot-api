@@ -1,6 +1,6 @@
-import { IRiotClient } from '../interfaces/Base/IRiotClient';
+import { IRiotClient } from '../types/Base/IRiotClient';
 
-import type { NewsFeedParams, NewsFeedResponse } from '../interfaces/General/NewsFeed';
+import type { NewsFeedParams, NewsFeedResponse } from '../types/General/NewsFeed';
 
 
 const BASE_URL =

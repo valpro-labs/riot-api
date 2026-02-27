@@ -1,12 +1,12 @@
-import type { StorefrontResponse } from '../interfaces/Store/Storefront';
-import type { WalletResponse } from '../interfaces/Store/Wallet';
+import type { StorefrontResponse } from '../types/Store/Storefront';
+import type { WalletResponse } from '../types/Store/Wallet';
 
-import type { Region, ItemTypeID } from '../interfaces/Shared/ValorantType';
+import type { Region, ItemTypeID } from '../types/Shared/ValorantType';
 
-import { OwnedItemsResponse } from '../interfaces/Store/OwnedItems';
+import { OwnedItemsResponse } from '../types/Store/OwnedItems';
 
 
-import { IRiotClient } from '../interfaces/Base/IRiotClient';
+import { IRiotClient } from '../types/Base/IRiotClient';
 
 export class StoreApi {
   private client: IRiotClient;

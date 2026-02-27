@@ -11,40 +11,40 @@ export * from './endpoints/PvpApi';
 export * from './endpoints/StoreApi';
 
 // Base Interfaces & Providers
-export * from './interfaces/Base/IAuthProvider';
-export * from './interfaces/Base/IVersionProvider';
-export * from './interfaces/Base/IXmppAuthProvider';
-export * from './interfaces/Base/IRiotClient';
-export * from './interfaces/Base/RiotClientConfig';
+export * from './types/Base/IAuthProvider';
+export * from './types/Base/IVersionProvider';
+export * from './types/Base/IXmppAuthProvider';
+export * from './types/Base/IRiotClient';
+export * from './types/Base/RiotClientConfig';
 
 // Auth Interfaces
-export * from './interfaces/Auth/Entitlement';
-export * from './interfaces/Auth/PlayerInfo';
-export * from './interfaces/Auth/RiotGeo';
+export * from './types/Auth/Entitlement';
+export * from './types/Auth/PlayerInfo';
+export * from './types/Auth/RiotGeo';
 
 // Feature Interfaces
-export * from './interfaces/Contract/Contracts';
-export * from './interfaces/General/NewsFeed';
-export * from './interfaces/PreGame/LockCharacter';
-export * from './interfaces/PreGame/PregameMatch';
-export * from './interfaces/PreGame/PregamePlayer';
-export * from './interfaces/PreGame/SelectCharacter';
-export * from './interfaces/Store/OwnedItems';
-export * from './interfaces/Store/Storefront';
-export * from './interfaces/Store/Wallet';
+export * from './types/Contract/Contracts';
+export * from './types/General/NewsFeed';
+export * from './types/PreGame/LockCharacter';
+export * from './types/PreGame/PregameMatch';
+export * from './types/PreGame/PregamePlayer';
+export * from './types/PreGame/SelectCharacter';
+export * from './types/Store/OwnedItems';
+export * from './types/Store/Storefront';
+export * from './types/Store/Wallet';
 
 // PVP Interfaces
-export * from './interfaces/Pvp/AccountXP';
-export * from './interfaces/Pvp/CompetitiveUpdates';
-export * from './interfaces/Pvp/DailyTicket';
-export * from './interfaces/Pvp/MatchDetails';
-export * from './interfaces/Pvp/MatchHistory';
-export * from './interfaces/Pvp/NameService';
-export * from './interfaces/Pvp/PlayerLoadout';
+export * from './types/Pvp/AccountXP';
+export * from './types/Pvp/CompetitiveUpdates';
+export * from './types/Pvp/DailyTicket';
+export * from './types/Pvp/MatchDetails';
+export * from './types/Pvp/MatchHistory';
+export * from './types/Pvp/NameService';
+export * from './types/Pvp/PlayerLoadout';
 
 // Shared & Common
-export * from './interfaces/Shared/Common';
-export * from './interfaces/Shared/ValorantType';
+export * from './types/Shared/Common';
+export * from './types/Shared/ValorantType';
 
 // Sub-modules
 export * from './auth';

@@ -1,17 +1,17 @@
 
-import type { AccountXPResponse } from '../interfaces/Pvp/AccountXP';
-import type { CompetitiveUpdatesResponse } from '../interfaces/Pvp/CompetitiveUpdates';
-import type { PlayerLoadoutResponse } from '../interfaces/Pvp/PlayerLoadout';
-import type { MatchHistoryResponse } from '../interfaces/Pvp/MatchHistory';
-import type { MatchDetailsResponse } from '../interfaces/Pvp/MatchDetails';
-import type { NameServiceResponse } from '../interfaces/Pvp/NameService';
+import type { AccountXPResponse } from '../types/Pvp/AccountXP';
+import type { CompetitiveUpdatesResponse } from '../types/Pvp/CompetitiveUpdates';
+import type { PlayerLoadoutResponse } from '../types/Pvp/PlayerLoadout';
+import type { MatchHistoryResponse } from '../types/Pvp/MatchHistory';
+import type { MatchDetailsResponse } from '../types/Pvp/MatchDetails';
+import type { NameServiceResponse } from '../types/Pvp/NameService';
 
-import type { Region } from '../interfaces/Shared/ValorantType';
+import type { Region } from '../types/Shared/ValorantType';
 
-import type { DailyTicketResponse } from '../interfaces/Pvp/DailyTicket';
+import type { DailyTicketResponse } from '../types/Pvp/DailyTicket';
 
 
-import { IRiotClient } from '../interfaces/Base/IRiotClient';
+import { IRiotClient } from '../types/Base/IRiotClient';
 
 export class PvpApi {
   private client: IRiotClient;

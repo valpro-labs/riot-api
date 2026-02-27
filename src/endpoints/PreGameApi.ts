@@ -1,12 +1,12 @@
-import type { PregamePlayerResponse } from '../interfaces/PreGame/PregamePlayer';
-import type { PregameMatchResponse } from '../interfaces/PreGame/PregameMatch';
-import type { SelectCharacterResponse } from '../interfaces/PreGame/SelectCharacter';
-import type { LockCharacterResponse } from '../interfaces/PreGame/LockCharacter';
+import type { PregamePlayerResponse } from '../types/PreGame/PregamePlayer';
+import type { PregameMatchResponse } from '../types/PreGame/PregameMatch';
+import type { SelectCharacterResponse } from '../types/PreGame/SelectCharacter';
+import type { LockCharacterResponse } from '../types/PreGame/LockCharacter';
 
-import type { Region } from '../interfaces/Shared/ValorantType';
+import type { Region } from '../types/Shared/ValorantType';
 
 
-import { IRiotClient } from '../interfaces/Base/IRiotClient';
+import { IRiotClient } from '../types/Base/IRiotClient';
 
 export class PreGameApi {
   private client: IRiotClient;

@@ -1,9 +1,9 @@
 
-import type { ContractsResponse } from '../interfaces/Contract/Contracts';
+import type { ContractsResponse } from '../types/Contract/Contracts';
 
-import { IRiotClient } from '../interfaces/Base/IRiotClient';
+import { IRiotClient } from '../types/Base/IRiotClient';
 
-import type { Region } from '../interfaces/Shared/ValorantType';
+import type { Region } from '../types/Shared/ValorantType';
 
 
 export class ContractApi {

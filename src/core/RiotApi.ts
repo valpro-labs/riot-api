@@ -8,7 +8,7 @@ import { ContractApi } from '../endpoints/ContractApi';
 import { PreGameApi } from '../endpoints/PreGameApi';
 import { NewsFeedApi } from '../endpoints/NewsFeedApi';
 
-import { RiotClientConfig } from '../interfaces/Base/RiotClientConfig';
+import { RiotClientConfig } from '../types/Base/RiotClientConfig';
 
 class RiotApi {
   private client: RiotClient;

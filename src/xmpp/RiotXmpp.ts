@@ -13,7 +13,7 @@ import {
 } from './XmlObjects';
 
 import { parsePASToken } from '../auth';
-import { IXmppAuthProvider } from '../interfaces/Base/IXmppAuthProvider';
+import { IXmppAuthProvider } from '../types/Base/IXmppAuthProvider';
 
 interface XmppEvents {
   error: (err: Error | unknown) => void;

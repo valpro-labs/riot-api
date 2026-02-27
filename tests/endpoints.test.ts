@@ -5,7 +5,7 @@ import { StoreApi } from '../src/endpoints/StoreApi';
 import { ContractApi } from '../src/endpoints/ContractApi';
 import { PreGameApi } from '../src/endpoints/PreGameApi';
 
-import { VALORANT_ITEM_TYPES } from '../src/interfaces/ValorantType';
+import { VALORANT_ITEM_TYPES } from '../src/types/ValorantType';
 
 jest.mock('../src/RiotClient');
 

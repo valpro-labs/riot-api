@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import { RiotClient } from '../src/RiotClient';
 
-import { IAuthProvider } from '../src/interfaces/IAuthProvider';
-import { IVersionProvider } from '../src/interfaces/IVersionProvider';
+import { IAuthProvider } from '../src/types/IAuthProvider';
+import { IVersionProvider } from '../src/types/IVersionProvider';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
