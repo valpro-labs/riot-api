@@ -14,11 +14,10 @@ export class SocketProvider implements ISocketProvider {
   connect(options: ConnectOptions): Promise<ITlsSocket> {
     return new Promise((resolve, reject) => {
       try {
-        const socket = TcpSocket.createTLSConnection(
+        const socket = TcpSocket.connectTLS(
           {
             host: options.host,
             port: options.port,
-            tls: true,
             tlsCheckValidity: options.rejectUnauthorized ?? true,
           },
           () => {
