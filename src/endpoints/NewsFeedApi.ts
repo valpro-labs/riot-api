@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { IRiotClient } from '../interfaces/Base/IRiotClient';
 
 import type { NewsFeedParams, NewsFeedResponse } from '../interfaces/General/NewsFeed';
 
@@ -18,6 +18,12 @@ const DEFAULT_PARAMS: Required<NewsFeedParams> = {
 };
 
 export class NewsFeedApi {
+  private client: IRiotClient;
+
+  constructor(client: IRiotClient) {
+    this.client = client;
+  }
+
   /**
    * Fetch VALORANT news feed (patch notes, game updates, etc.)
    * from the Riot Games Publishing Content API.
@@ -31,7 +37,8 @@ export class NewsFeedApi {
 
     const url = `${BASE_URL}/channel/${merged.channel}/list/${merged.list}`;
 
-    const response = await axios.get<NewsFeedResponse>(url, {
+    return this.client.request<NewsFeedResponse>(url, {
+      method: 'GET',
       params: {
         products: merged.products,
         categories: merged.categories,
@@ -42,7 +49,5 @@ export class NewsFeedApi {
       },
       timeout: 15000,
     });
-
-    return response.data;
   }
 }

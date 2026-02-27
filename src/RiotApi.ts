@@ -31,7 +31,7 @@ class RiotApi {
     this.storeApi = new StoreApi(this.client);
     this.contractApi = new ContractApi(this.client);
     this.preGameApi = new PreGameApi(this.client);
-    this.newsFeedApi = new NewsFeedApi();
+    this.newsFeedApi = new NewsFeedApi(this.client);
   }
 
 
