@@ -58,6 +58,6 @@ export const fetchFriends = () => ({
   },
 });
 
-export const initialPresence = (presenceData: any = {}) => ({
+export const presence = (presenceData: any = {}) => ({
   presence: presenceData,
 });

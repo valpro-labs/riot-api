@@ -8,6 +8,8 @@ import {
   rxep,
   setupSession,
   xmlDeclaration,
+  presence,
+  fetchFriends,
 } from './XmlObjects';
 
 import { parsePASToken } from '../auth';
@@ -131,5 +133,15 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
         console.log(type, data);
         break;
     }
+  }
+
+  public sendPresence() {
+    console.log('Sending initial presence...');
+    this.client.sendXml(presence());
+  }
+
+  public fetchFriends() {
+    console.log('Fetching friends...');
+    this.client.sendXml(fetchFriends());
   }
 }
