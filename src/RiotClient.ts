@@ -68,8 +68,8 @@ export class RiotClient {
       case 'br':
       case 'na':
         return 'na';
-      case 'na':
-        return 'pbe';
+      case 'pbe':
+        return 'na';
       case 'eu':
         return 'eu';
       case 'ap':
