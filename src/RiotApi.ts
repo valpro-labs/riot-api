@@ -41,9 +41,7 @@ class RiotApi {
     this.newsFeedApi = new NewsFeedApi();
   }
 
-  public reset() {
-    this.client.reset();
-  }
+
 }
 
 export { RiotApi, RiotApiConfig };

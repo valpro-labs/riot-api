@@ -13,6 +13,7 @@ export class RiotClient {
   private config: RiotClientConfig;
   private entitlements: EntitlementResponse | null = null;
   private entitlementsPromise: Promise<EntitlementResponse> | null = null;
+  private entitlementForToken: string | null = null;
 
   constructor(config: RiotClientConfig) {
     this.config = config;
@@ -96,8 +97,15 @@ export class RiotClient {
     );
   }
 
-  // Internal method to get entitlement, similar to original RemoteApi
-  private async getEntitlement(): Promise<EntitlementResponse> {
+  // Internal method to get entitlement
+  // Accepts the current accessToken so it can auto-invalidate when token changes
+  private async getEntitlement(accessToken: string): Promise<EntitlementResponse> {
+    if (accessToken !== this.entitlementForToken) {
+      this.entitlements = null;
+      this.entitlementsPromise = null;
+      this.entitlementForToken = accessToken;
+    }
+
     if (this.entitlements) {
       return this.entitlements;
     }
@@ -113,6 +121,7 @@ export class RiotClient {
       })
       .catch(error => {
         this.entitlements = null;
+        this.entitlementForToken = null;
         throw error;
       })
       .finally(() => {
@@ -122,20 +131,16 @@ export class RiotClient {
     return this.entitlementsPromise;
   }
 
-  public reset() {
-    this.entitlements = null;
-    this.entitlementsPromise = null;
-  }
-
   private async getAuthHeaders() {
     const authData = await this.config.authProvider.getAuthData();
     if (!authData) {
       throw new Error('No authentication data available');
     }
 
-    const entitlements = await this.getEntitlement();
-
-    const riotClientVersion = await this.config.versionProvider.getRiotClientVersion();
+    const [entitlements, riotClientVersion] = await Promise.all([
+      this.getEntitlement(authData.accessToken),
+      this.config.versionProvider.getRiotClientVersion(),
+    ]);
 
     return {
       'X-Riot-ClientPlatform': 'ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9',
