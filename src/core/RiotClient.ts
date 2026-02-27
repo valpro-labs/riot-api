@@ -1,12 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
 
-import { EntitlementResponse } from './interfaces/Auth/Entitlement';
+import { EntitlementResponse } from '../interfaces/Auth/Entitlement';
 
-import type { Region, Shard } from './interfaces/Shared/ValorantType';
-import { RiotClientConfig } from './interfaces/Base/RiotClientConfig';
-import { IAuthProvider } from './interfaces/Base/IAuthProvider';
-import { IVersionProvider } from './interfaces/Base/IVersionProvider';
-import { IRiotClient } from './interfaces/Base/IRiotClient';
+import type { Region, Shard } from '../interfaces/Shared/ValorantType';
+import { RiotClientConfig } from '../interfaces/Base/RiotClientConfig';
+import { IAuthProvider } from '../interfaces/Base/IAuthProvider';
+import { IVersionProvider } from '../interfaces/Base/IVersionProvider';
+import { IRiotClient } from '../interfaces/Base/IRiotClient';
 
 
 export class RiotClient implements IRiotClient {

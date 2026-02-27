@@ -1,14 +1,14 @@
 
 import { RiotClient } from './RiotClient';
 
-import { AuthApi } from './endpoints/AuthApi';
-import { PvpApi } from './endpoints/PvpApi';
-import { StoreApi } from './endpoints/StoreApi';
-import { ContractApi } from './endpoints/ContractApi';
-import { PreGameApi } from './endpoints/PreGameApi';
-import { NewsFeedApi } from './endpoints/NewsFeedApi';
+import { AuthApi } from '../endpoints/AuthApi';
+import { PvpApi } from '../endpoints/PvpApi';
+import { StoreApi } from '../endpoints/StoreApi';
+import { ContractApi } from '../endpoints/ContractApi';
+import { PreGameApi } from '../endpoints/PreGameApi';
+import { NewsFeedApi } from '../endpoints/NewsFeedApi';
 
-import { RiotClientConfig } from './interfaces/Base/RiotClientConfig';
+import { RiotClientConfig } from '../interfaces/Base/RiotClientConfig';
 
 class RiotApi {
   private client: RiotClient;

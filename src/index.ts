@@ -1,6 +1,6 @@
 // Core
-export * from './RiotApi';
-export * from './RiotClient';
+export * from './core/RiotApi';
+export * from './core/RiotClient';
 
 // Endpoints
 export * from './endpoints/AuthApi';
