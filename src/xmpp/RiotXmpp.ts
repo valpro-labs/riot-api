@@ -21,6 +21,9 @@ interface XmppEvents {
   error: (err: Error | unknown) => void;
   ready: () => void;
   closed: () => void;
+  presence: (data: any) => void;
+  message: (data: any) => void;
+  friends: (data: any) => void;
 }
 
 interface XmppRegionObject {
@@ -151,13 +154,13 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
   private _handleData(type: string, data: any) {
     switch (type) {
       case 'presence':
-        console.log(type, data);
+        this.emit('presence', data);
         break;
       case 'message':
-        console.log(type, data);
+        this.emit('message', data);
         break;
       case 'iq':
-        console.log(type, data);
+        this.emit('friends', data);
         break;
     }
   }
