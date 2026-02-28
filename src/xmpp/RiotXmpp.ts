@@ -17,13 +17,15 @@ import { SocketProvider } from './socket/SocketProvider';
 import { parsePASToken } from '../auth';
 import { IXmppAuthProvider } from '../types/Base/IXmppAuthProvider';
 
+import { formatRoster, RosterOutput } from './friends/friends';
+
 interface XmppEvents {
   error: (err: Error | unknown) => void;
   ready: () => void;
   closed: () => void;
   presence: (data: any) => void;
   message: (data: any) => void;
-  friends: (data: any) => void;
+  friends: (data: RosterOutput) => void;
 }
 
 interface XmppRegionObject {
@@ -160,7 +162,8 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
         this.emit('message', data);
         break;
       case 'iq':
-        this.emit('friends', data);
+        const roster = formatRoster(data);
+        this.emit('friends', roster);
         break;
     }
   }
