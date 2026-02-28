@@ -18,6 +18,7 @@ import { parsePASToken } from '../auth';
 import { IXmppAuthProvider } from '../types/Base/IXmppAuthProvider';
 
 import { formatRoster, RosterOutput } from './friends/friends';
+import { formatPresence } from './presence/presence';
 
 interface XmppEvents {
   error: (err: Error | unknown) => void;
@@ -156,7 +157,8 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
   private _handleData(type: string, data: any) {
     switch (type) {
       case 'presence':
-        this.emit('presence', data);
+        const presence = formatPresence(data);
+        this.emit('presence', presence);
         break;
       case 'message':
         this.emit('message', data);
