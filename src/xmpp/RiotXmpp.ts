@@ -18,13 +18,13 @@ import { parsePASToken } from '../auth';
 import { IXmppAuthProvider } from '../types/Base/IXmppAuthProvider';
 
 import { formatRoster, RosterOutput } from './friends/friends';
-import { formatPresence } from './presence/presence';
+import { formatPresence, PresenceOutput } from './presence/presence';
 
 interface XmppEvents {
   error: (err: Error | unknown) => void;
   ready: () => void;
   closed: () => void;
-  presence: (data: any) => void;
+  presence: (data: PresenceOutput) => void;
   message: (data: any) => void;
   friends: (data: RosterOutput) => void;
 }
