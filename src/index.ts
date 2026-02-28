@@ -15,4 +15,3 @@ export * from './types';
 
 // Sub-modules
 export * from './auth';
-export * from './xmpp';
