@@ -37,7 +37,8 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
   private rsoToken = '';
   private pasToken = '';
   private regionData: XmppRegionObject | null = null;
-  private shouldReconnect = true;
+  private manualDisconnect = false;
+  private currentConnectionId = 0;
 
   constructor(authProvider: IXmppAuthProvider, socketProvider?: ISocketProvider) {
     super();
@@ -50,20 +51,23 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
     this.client.on('closed', async () => {
       this.stopHeartbeat();
       this.emit('closed');
-      if (this.shouldReconnect) {
-        try {
-          await this.connect();
-        } catch (e) {
-          this.emit('error', e);
-        }
+      if (this.manualDisconnect) return;
+      try {
+        await this.connect();
+      } catch (e) {
+        this.emit('error', e);
       }
     });
 
   }
 
   public async connect() {
-    this.shouldReconnect = true;
+    this.manualDisconnect = false;
+    const connectionId = ++this.currentConnectionId;
+
     const { rso, pas } = await this.authProvider.getXmppTokens();
+
+    if (connectionId !== this.currentConnectionId) return;
 
     const pasData = parsePASToken(pas);
     const lookupName = pasData.affinity;
@@ -81,7 +85,9 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
     await this.client.connect({ port: 5223, host });
     console.log(`Connected to ${lookupName} (${host})`);
 
-    await this.performHandshake();
+    await this.performHandshake(connectionId);
+
+    if (connectionId !== this.currentConnectionId) return;
 
     this.client.removeAllListeners('stanza');
     this.client.on('stanza', (stanza: any) => {
@@ -91,18 +97,26 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
     this.emit('ready');
   }
 
-  private async performHandshake() {
+  private async performHandshake(connectionId: number) {
+    const check = () => connectionId === this.currentConnectionId;
+
     await this.client.sendAndRead(xmlDeclaration(this.regionData!));
+    if (!check()) return;
 
     await this.client.sendXmlAndRead(mechanism(this.rsoToken, this.pasToken));
+    if (!check()) return;
 
     await this.client.sendAndRead(xmlDeclaration(this.regionData!));
+    if (!check()) return;
 
     await this.client.sendXmlAndRead(clientName());
+    if (!check()) return;
 
     await this.client.sendXmlAndRead(rxep());
+    if (!check()) return;
 
     await this.client.sendXmlAndRead(setupSession());
+    if (!check()) return;
 
     console.log('Handshake finished');
   }
@@ -160,7 +174,8 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
 
   public disconnect() {
     console.log('Disconnecting from XMPP...');
-    this.shouldReconnect = false;
+    this.manualDisconnect = true;
+    this.currentConnectionId++;
     this.stopHeartbeat();
     if (this.client.isConnected) {
       this.client.send('</stream:stream>');

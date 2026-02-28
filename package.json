@@ -22,7 +22,7 @@
     "zod": "^4.3.6"
   },
   "peerDependencies": {
-    "react-native-tcp-socket": "*"
+    "react-native-tcp-socket": ">= 6.0.0"
   },
   "peerDependenciesMeta": {
     "react-native-tcp-socket": {
