@@ -37,6 +37,7 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
   private rsoToken = '';
   private pasToken = '';
   private regionData: XmppRegionObject | null = null;
+  private shouldReconnect = true;
 
   constructor(authProvider: IXmppAuthProvider, socketProvider?: ISocketProvider) {
     super();
@@ -49,16 +50,19 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
     this.client.on('closed', async () => {
       this.stopHeartbeat();
       this.emit('closed');
-      try {
-        await this.connect();
-      } catch (e) {
-        this.emit('error', e);
+      if (this.shouldReconnect) {
+        try {
+          await this.connect();
+        } catch (e) {
+          this.emit('error', e);
+        }
       }
     });
 
   }
 
   public async connect() {
+    this.shouldReconnect = true;
     const { rso, pas } = await this.authProvider.getXmppTokens();
 
     const pasData = parsePASToken(pas);
@@ -152,5 +156,15 @@ export class RiotXmpp extends EventEmitter<XmppEvents> {
   public fetchFriends() {
     console.log('Fetching friends...');
     this.client.sendXml(fetchFriends());
+  }
+
+  public disconnect() {
+    console.log('Disconnecting from XMPP...');
+    this.shouldReconnect = false;
+    this.stopHeartbeat();
+    if (this.client.isConnected) {
+      this.client.send('</stream:stream>');
+      this.client.disconnect();
+    }
   }
 }

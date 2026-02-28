@@ -32,6 +32,10 @@ export class XmppClient extends EventEmitter<XmppClientEvents> {
     this.provider = provider;
   }
 
+  public get isConnected(): boolean {
+    return !!this.socket && this.socket.readyState === 'open';
+  }
+
   public connect(options: ConnectOptions): Promise<void> {
     return new Promise((resolve, reject) => {
       this.provider
