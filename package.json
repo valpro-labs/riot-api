@@ -4,6 +4,17 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./xmpp": {
+      "require": "./dist/xmpp/index.js",
+      "types": "./dist/xmpp/index.d.ts"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
