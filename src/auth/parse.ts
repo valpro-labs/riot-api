@@ -77,12 +77,3 @@ export function parseReauthRedirect(location: string) {
     puuid: decoded.sub,
   };
 }
-
-interface PASTokenPayload extends JWTPayload {
-  affinity: string;
-}
-
-export function parsePASToken(PASToken: string) {
-  const pasData = jwtDecode<PASTokenPayload>(PASToken);
-  return pasData;
-}
