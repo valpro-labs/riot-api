@@ -1,4 +1,4 @@
-import axios from 'axios';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 
 import { Cookie, createCookieString } from './cookies';
 import { webReauthURL, ReauthData, processReauthResponse } from './reauth.common';
@@ -6,13 +6,13 @@ import { webReauthURL, ReauthData, processReauthResponse } from './reauth.common
 export async function reauth(cookies: Cookie[], url: string = webReauthURL): Promise<ReauthData> {
   const cookieStr = createCookieString(cookies);
 
-  const response = await axios.get(url, {
-    headers: {
+  const response = await ReactNativeBlobUtil
+    .config({
+      followRedirect: false,
+    })
+    .fetch('GET', url, {
       Cookie: cookieStr,
-    },
-    maxRedirects: 0,
-    validateStatus: (status) => status >= 200 && status < 400,
-  });
+    });
 
-  return processReauthResponse(cookies, response.headers.headers);
+  return processReauthResponse(cookies, response.info().headers);
 }
