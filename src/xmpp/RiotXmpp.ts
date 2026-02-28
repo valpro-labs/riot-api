@@ -17,8 +17,8 @@ import { SocketProvider } from './socket/SocketProvider';
 import { parsePASToken } from '../auth';
 import { IXmppAuthProvider } from '../types/Base/IXmppAuthProvider';
 
-import { formatRoster, RosterOutput } from './friends/friends';
-import { formatPresence, PresenceOutput } from './presence/presence';
+import { formatRoster, RosterOutput } from './friends';
+import { formatPresence, PresenceOutput } from './presence';
 
 interface XmppEvents {
   error: (err: Error | unknown) => void;
