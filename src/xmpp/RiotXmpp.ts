@@ -31,7 +31,7 @@ interface XmppRegionObject {
 
 export class RiotXmpp extends EventEmitter<XmppEvents> {
   private client: XmppClient;
-  private heartbeatInterval: NodeJS.Timeout | null = null;
+  private heartbeatInterval: ReturnType<typeof setInterval> | null = null;
   private authProvider: IXmppAuthProvider;
 
   private rsoToken = '';
