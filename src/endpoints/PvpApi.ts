@@ -5,6 +5,7 @@ import type { PlayerLoadoutResponse } from '../types/Pvp/PlayerLoadout';
 import type { MatchHistoryResponse } from '../types/Pvp/MatchHistory';
 import type { MatchDetailsResponse } from '../types/Pvp/MatchDetails';
 import type { NameServiceResponse } from '../types/Pvp/NameService';
+import type { FetchContentResponse } from '../types/Pvp/FetchContent';
 
 import type { Region } from '../types/Shared/ValorantType';
 
@@ -18,6 +19,17 @@ export class PvpApi {
 
   constructor(client: IRiotClient) {
     this.client = client;
+  }
+
+  /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/fetch-content)
+   */
+  public async getFetchContent(region: Region) {
+    return this.client.requestShared<FetchContentResponse>(
+      region,
+      'content-service/v3/content',
+      { method: 'GET' }
+    );
   }
 
   /**
