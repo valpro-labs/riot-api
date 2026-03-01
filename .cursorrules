@@ -1,0 +1,29 @@
+# Cursor Rules
+
+## Zod Schema Guidelines
+
+- **No Inline Objects**: When defining Zod schemas, do not use inline `z.object({...})` within a `z.array()` or as a nested property within another `z.object()`.
+- **Independent Named Schemas**: Every object that is part of an array or nested structure must be defined as an independent, named schema first.
+- **Exported Schemas**: All extracted schemas should be exported and follow the naming convention `[Name]Schema`.
+- **Type Definitions**: Provide a corresponding TypeScript type for each extracted schema using `z.input<typeof ...>`.
+
+Example:
+```typescript
+// Incorrect
+export const MyListSchema = z.object({
+  meta: z.object({ count: z.number() }),
+  items: z.array(z.object({ id: z.string() }))
+});
+
+// Correct
+export const MyMetaSchema = z.object({ count: z.number() });
+export type MyMeta = z.input<typeof MyMetaSchema>;
+
+export const MyItemSchema = z.object({ id: z.string() });
+export type MyItem = z.input<typeof MyItemSchema>;
+
+export const MyListSchema = z.object({
+  meta: MyMetaSchema,
+  items: z.array(MyItemSchema)
+});
+```
