@@ -86,4 +86,17 @@ export class PartyApi {
       { method: 'POST' }
     );
   }
+
+  /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/start-custom-game)
+   * 
+   * Start a custom game
+   */
+  public async startCustomGame(region: Region, partyId: string) {
+    return this.client.requestGLZ<PartyResponse>(
+      region,
+      `parties/v1/parties/${partyId}/startcustomgame`,
+      { method: 'POST' }
+    );
+  }
 }
