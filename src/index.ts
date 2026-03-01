@@ -9,6 +9,7 @@ export * from './endpoints/NewsFeedApi';
 export * from './endpoints/PreGameApi';
 export * from './endpoints/PvpApi';
 export * from './endpoints/StoreApi';
+export * from './endpoints/PartyApi';
 
 // Types
 export * from './types';
