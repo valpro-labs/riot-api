@@ -187,6 +187,24 @@ export const PlayerSchema = z.object({
 });
 export type Player = z.input<typeof PlayerSchema>;
 
+export const BotStatsSchema = z.object({
+  score: z.number(),
+  roundsPlayed: z.number(),
+  kills: z.number(),
+  deaths: z.number(),
+  assists: z.number(),
+  playtimeMillis: z.number(),
+});
+export type BotStats = z.input<typeof BotStatsSchema>;
+
+export const BotSchema = z.object({
+  subject: z.string(),
+  teamId: teamOrPlayerSchema,
+  characterId: characterIDSchema,
+  stats: BotStatsSchema,
+});
+export type Bot = z.input<typeof BotSchema>;
+
 export const CoachSchema = z.object({
   subject: playerUUIDSchema,
   teamId: z.enum(['Blue', 'Red']),
@@ -267,7 +285,7 @@ export type RoundResult = z.input<typeof RoundResultSchema>;
 export const MatchDetailsSchema = z.object({
   matchInfo: MatchInfoSchema,
   players: z.array(PlayerSchema),
-  bots: z.array(z.unknown()),
+  bots: z.array(BotSchema),
   coaches: z.array(CoachSchema),
   teams: z.array(TeamSchema).nullable(),
   roundResults: z.array(RoundResultSchema).nullable(),
