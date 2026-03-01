@@ -102,6 +102,17 @@ export const PartyErrorNotificationSchema = z.object({
 });
 export type PartyErrorNotification = z.input<typeof PartyErrorNotificationSchema>;
 
+export const PartyRequestSchema = z.object({
+  ID: z.string(),
+  PartyID: partyIDSchema,
+  RequestedBySubject: playerUUIDSchema,
+  Subjects: z.array(playerUUIDSchema),
+  CreatedAt: z.string().describe('Date in ISO 8601 format'),
+  RefreshedAt: z.string().describe('Date in ISO 8601 format'),
+  ExpiresIn: z.number(),
+});
+export type PartyRequest = z.input<typeof PartyRequestSchema>;
+
 export const PartyCheatDataSchema = z.object({
   GamePodOverride: z.string(),
   ForcePostGameProcessing: z.boolean(),
@@ -122,7 +133,7 @@ export const PartySchema = z.object({
   CustomGameData: PartyCustomGameDataSchema,
   MatchmakingData: PartyMatchmakingDataSchema,
   Invites: z.null(),
-  Requests: z.array(z.unknown()),
+  Requests: z.array(PartyRequestSchema),
   QueueEntryTime: z.string().describe('Date in ISO 8601 format'),
   ErrorNotification: PartyErrorNotificationSchema,
   RestrictedSeconds: z.number(),
@@ -133,3 +144,21 @@ export const PartySchema = z.object({
   InviteCode: z.string().describe('Empty string when there is no invite code'),
 });
 export type PartyResponse = z.input<typeof PartySchema>;
+
+export const PartyPlatformInfoSchema = z.object({
+  platformType: z.literal('PC'),
+  platformOS: z.literal('Windows'),
+  platformOSVersion: z.string(),
+  platformChipset: z.string(),
+});
+export type PartyPlatformInfo = z.input<typeof PartyPlatformInfoSchema>;
+
+export const PartyJoinByCodeResponseSchema = z.object({
+  Subject: playerUUIDSchema,
+  Version: z.number(),
+  CurrentPartyID: partyIDSchema,
+  Invites: z.null(),
+  Requests: z.array(PartyRequestSchema),
+  PlatformInfo: PartyPlatformInfoSchema,
+});
+export type PartyJoinByCodeResponse = z.input<typeof PartyJoinByCodeResponseSchema>;

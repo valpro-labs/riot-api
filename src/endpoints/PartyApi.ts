@@ -1,6 +1,6 @@
 import { IRiotClient } from '../types/Base/IRiotClient';
 import { Region } from '../types/Shared/ValorantType';
-import { PartyResponse } from '../types/Party/Party';
+import { PartyJoinByCodeResponse, PartyResponse } from '../types/Party/Party';
 
 export class PartyApi {
   private client: IRiotClient;
@@ -45,6 +45,45 @@ export class PartyApi {
       region,
       `parties/v1/parties/${partyId}/accessibility`,
       { method: 'POST', data: { accessibility: accessibility } }
+    );
+  }
+
+  /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-generate-code)
+   * 
+   * Generate an invite code for the party
+   */
+  public async generatePartyCode(region: Region, partyId: string) {
+    return this.client.requestGLZ<PartyResponse>(
+      region,
+      `parties/v1/parties/${partyId}/invitecode`,
+      { method: 'POST' }
+    );
+  }
+
+  /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-disable-code)
+   * 
+   * Disable the invite code for the party
+   */
+  public async disablePartyCode(region: Region, partyId: string) {
+    return this.client.requestGLZ<PartyResponse>(
+      region,
+      `parties/v1/parties/${partyId}/invitecode`,
+      { method: 'DELETE' }
+    );
+  }
+
+  /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-join-by-code)
+   * 
+   * Join a party by code
+   */
+  public async joinPartyByCode(region: Region, code: string) {
+    return this.client.requestGLZ<PartyJoinByCodeResponse>(
+      region,
+      `parties/v1/players/joinbycode/${code}`,
+      { method: 'POST' }
     );
   }
 
