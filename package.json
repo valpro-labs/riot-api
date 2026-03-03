@@ -2,6 +2,22 @@
   "name": "@valpro-labs/riot-api",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/valpro-labs/riot-api#readme",
+  "bugs": {
+    "url": "https://github.com/valpro-labs/riot-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valpro-labs/riot-api.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "riot"
+  ],
+  "author": "rhy3h",
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -9,9 +25,6 @@
     "prepare": "npm run build",
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "commonjs",
   "dependencies": {
     "axios": "^1.13.5",
