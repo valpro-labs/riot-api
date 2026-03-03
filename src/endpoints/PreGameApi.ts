@@ -2,6 +2,7 @@ import type { PregamePlayerResponse } from '../types/PreGame/PregamePlayer';
 import type { PregameMatchResponse } from '../types/PreGame/PregameMatch';
 import type { SelectCharacterResponse } from '../types/PreGame/SelectCharacter';
 import type { LockCharacterResponse } from '../types/PreGame/LockCharacter';
+import type { PreGameQuitResponse } from '../types/PreGame/PreGameQuit';
 
 import type { Region } from '../types/Shared/ValorantType';
 
@@ -55,6 +56,21 @@ export class PreGameApi {
     return this.client.requestGLZ<LockCharacterResponse>(
       region,
       `pregame/v1/matches/${matchId}/lock/${agentId}`,
+      {
+        method: 'POST',
+      }
+    );
+  }
+
+  /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/pre-game-quit)
+   *
+   * Quit the pre-game lobby
+   */
+  public async postPreGameQuit(region: Region, matchId: string) {
+    return this.client.requestGLZ<PreGameQuitResponse>(
+      region,
+      `pregame/v1/matches/${matchId}/quit`,
       {
         method: 'POST',
       }
