@@ -6,4 +6,5 @@ export * from './PreGame';
 export * from './Pvp';
 export * from './Shared';
 export * from './Store';
+export * from './CoreGame';
 export * from './Party/Party';
