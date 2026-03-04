@@ -8,6 +8,7 @@ import { ContractApi } from '../endpoints/ContractApi';
 import { PreGameApi } from '../endpoints/PreGameApi';
 import { NewsFeedApi } from '../endpoints/NewsFeedApi';
 import { PartyApi } from '../endpoints/PartyApi';
+import { CoreGameApi } from '../endpoints/CoreGameApi';
 
 import { RiotClientConfig } from '../types/Base/RiotClientConfig';
 
@@ -21,6 +22,7 @@ class RiotApi {
   public preGameApi: PreGameApi;
   public newsFeedApi: NewsFeedApi;
   public partyApi: PartyApi;
+  public coreGameApi: CoreGameApi;
 
   constructor(config: RiotClientConfig) {
     this.client = new RiotClient({
@@ -35,6 +37,7 @@ class RiotApi {
     this.preGameApi = new PreGameApi(this.client);
     this.newsFeedApi = new NewsFeedApi(this.client);
     this.partyApi = new PartyApi(this.client);
+    this.coreGameApi = new CoreGameApi(this.client);
   }
 
 
