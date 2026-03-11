@@ -1,7 +1,7 @@
 import { IRiotClient } from '../types/Base/IRiotClient';
+import { RequestOptions } from '../types/Base/RequestOptions';
 
 import type { NewsFeedParams, NewsFeedResponse } from '../types/General/NewsFeed';
-
 
 const BASE_URL =
   'https://content.publishing.riotgames.com/publishing-content/v2.0/public';
@@ -31,7 +31,8 @@ export class NewsFeedApi {
    * @see https://content.publishing.riotgames.com/publishing-content/v2.0/public/channel/{channel}/list/{list}
    */
   public async getNewsFeed(
-    params?: NewsFeedParams
+    params?: NewsFeedParams,
+    options?: RequestOptions
   ): Promise<NewsFeedResponse> {
     const merged = { ...DEFAULT_PARAMS, ...params };
 
@@ -39,6 +40,7 @@ export class NewsFeedApi {
 
     return this.client.request<NewsFeedResponse>(url, {
       method: 'GET',
+      signal: options?.signal,
       params: {
         products: merged.products,
         categories: merged.categories,

@@ -1,5 +1,7 @@
 import { IRiotClient } from '../types/Base/IRiotClient';
+import { RequestOptions } from '../types/Base/RequestOptions';
 import { Region } from '../types/Shared/ValorantType';
+
 import { PartyJoinByCodeResponse, PartyResponse } from '../types/Party/Party';
 
 export class PartyApi {
@@ -14,11 +16,14 @@ export class PartyApi {
    * 
    * Get the party information for the given party ID.
    */
-  public async getParty(region: Region, partyId: string) {
+  public async getParty(region: Region, partyId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}`,
-      { method: 'GET' }
+      {
+        method: 'GET',
+        signal: options?.signal,
+      }
     );
   }
 
@@ -27,11 +32,15 @@ export class PartyApi {
    * 
    * Change the queue for the party
    */
-  public async changeQueue(region: Region, partyId: string, queueId: string) {
+  public async changeQueue(region: Region, partyId: string, queueId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/queue`,
-      { method: 'POST', data: { queueID: queueId } }
+      {
+        method: 'POST',
+        data: { queueID: queueId },
+        signal: options?.signal,
+      }
     );
   }
 
@@ -40,11 +49,15 @@ export class PartyApi {
    * 
    * Set the accessibility of the party
    */
-  public async setPartyAccessibility(region: Region, partyId: string, accessibility: 'OPEN' | 'CLOSED') {
+  public async setPartyAccessibility(region: Region, partyId: string, accessibility: 'OPEN' | 'CLOSED', options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/accessibility`,
-      { method: 'POST', data: { accessibility: accessibility } }
+      {
+        method: 'POST',
+        data: { accessibility: accessibility },
+        signal: options?.signal,
+      }
     );
   }
 
@@ -53,11 +66,14 @@ export class PartyApi {
    * 
    * Generate an invite code for the party
    */
-  public async generatePartyCode(region: Region, partyId: string) {
+  public async generatePartyCode(region: Region, partyId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/invitecode`,
-      { method: 'POST' }
+      {
+        method: 'POST',
+        signal: options?.signal,
+      }
     );
   }
 
@@ -66,11 +82,14 @@ export class PartyApi {
    * 
    * Disable the invite code for the party
    */
-  public async disablePartyCode(region: Region, partyId: string) {
+  public async disablePartyCode(region: Region, partyId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/invitecode`,
-      { method: 'DELETE' }
+      {
+        method: 'DELETE',
+        signal: options?.signal,
+      }
     );
   }
 
@@ -79,11 +98,14 @@ export class PartyApi {
    * 
    * Join a party by code
    */
-  public async joinPartyByCode(region: Region, code: string) {
+  public async joinPartyByCode(region: Region, code: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyJoinByCodeResponse>(
       region,
       `parties/v1/players/joinbycode/${code}`,
-      { method: 'POST' }
+      {
+        method: 'POST',
+        signal: options?.signal,
+      }
     );
   }
 
@@ -92,11 +114,15 @@ export class PartyApi {
    * 
    * Set the ready status of a player in the current party
    */
-  public async setMemberReady(region: Region, partyId: string, puuid: string, ready: boolean) {
+  public async setMemberReady(region: Region, partyId: string, puuid: string, ready: boolean, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/members/${puuid}/setReady`,
-      { method: 'POST', data: { ready: ready } }
+      {
+        method: 'POST',
+        data: { ready: ready },
+        signal: options?.signal,
+      }
     );
   }
 
@@ -105,11 +131,14 @@ export class PartyApi {
    * 
    * Enter the matchmaking queue for the party
    */
-  public async enterMatchmakingQueue(region: Region, partyId: string) {
+  public async enterMatchmakingQueue(region: Region, partyId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/matchmaking/join`,
-      { method: 'POST' }
+      {
+        method: 'POST',
+        signal: options?.signal,
+      }
     );
   }
 
@@ -118,11 +147,14 @@ export class PartyApi {
    * 
    * Leave the matchmaking queue for the party
    */
-  public async leaveMatchmakingQueue(region: Region, partyId: string) {
+  public async leaveMatchmakingQueue(region: Region, partyId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/matchmaking/leave`,
-      { method: 'POST' }
+      {
+        method: 'POST',
+        signal: options?.signal,
+      }
     );
   }
 
@@ -131,11 +163,14 @@ export class PartyApi {
    * 
    * Start a custom game
    */
-  public async startCustomGame(region: Region, partyId: string) {
+  public async startCustomGame(region: Region, partyId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/startcustomgame`,
-      { method: 'POST' }
+      {
+        method: 'POST',
+        signal: options?.signal,
+      }
     );
   }
 }
