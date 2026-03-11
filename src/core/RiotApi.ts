@@ -39,8 +39,6 @@ class RiotApi {
     this.partyApi = new PartyApi(this.client);
     this.coreGameApi = new CoreGameApi(this.client);
   }
-
-
 }
 
 export { RiotApi };
