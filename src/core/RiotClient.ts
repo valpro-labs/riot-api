@@ -7,19 +7,27 @@ import { RiotClientConfig } from '../types/Base/RiotClientConfig';
 import { IAuthProvider } from '../types/Base/IAuthProvider';
 import { IVersionProvider } from '../types/Base/IVersionProvider';
 import { IRiotClient } from '../types/Base/IRiotClient';
+import { IResponseParser } from '../types/Base/IResponseParser';
 
+const defaultParser: IResponseParser = {
+  responseType: 'arraybuffer',
+  parse: <T>(data: Buffer): T => JSON.parse(data.toString('utf-8')) as T,
+};
 
 export class RiotClient implements IRiotClient {
   private axiosInstance: AxiosInstance;
   private config: RiotClientConfig;
+  private parser: IResponseParser;
   private entitlements: EntitlementResponse | null = null;
   private entitlementsPromise: Promise<EntitlementResponse> | null = null;
   private entitlementForToken: string | null = null;
 
   constructor(config: RiotClientConfig) {
     this.config = config;
+    this.parser = config.responseParser ?? defaultParser;
     this.axiosInstance = axios.create({
       timeout: 30000,
+      responseType: this.parser.responseType,
     });
 
     this.setupInterceptors();
@@ -153,11 +161,8 @@ export class RiotClient implements IRiotClient {
   // Generic Request Methods
 
   public async request<T>(url: string, config: AxiosRequestConfig = {}): Promise<T> {
-    const response = await this.axiosInstance<T>({
-      url,
-      ...config,
-    });
-    return response.data;
+    const response = await this.axiosInstance<Buffer>({ url, ...config });
+    return await this.parser.parse<T>(response.data);
   }
 
   public async requestPD<T>(region: Region, resource: string, config: AxiosRequestConfig = { method: 'GET' }): Promise<T> {
@@ -205,5 +210,3 @@ export class RiotClient implements IRiotClient {
     });
   }
 }
-
-type Resource = string;
