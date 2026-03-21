@@ -140,7 +140,7 @@ export class RiotClient implements IRiotClient {
     return this.entitlementsPromise;
   }
 
-  private async getAuthHeaders() {
+  public async getAuthHeaders() {
     const authData = await this.config.authProvider.getAuthData();
     if (!authData) {
       throw new Error('No authentication data available');
