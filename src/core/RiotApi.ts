@@ -13,7 +13,7 @@ import { CoreGameApi } from '../endpoints/CoreGameApi';
 import { RiotClientConfig } from '../types/Base/RiotClientConfig';
 
 class RiotApi {
-  private client: RiotClient;
+  public client: RiotClient;
 
   public authApi: AuthApi;
   public pvpApi: PvpApi;
