@@ -63,7 +63,7 @@ export class RiotClient implements IRiotClient {
     return this.config.versionProvider;
   }
 
-  private getShard(region: Region): Shard {
+	public getShard(region: Region): Shard {
     switch (region) {
       case 'latam':
       case 'br':
