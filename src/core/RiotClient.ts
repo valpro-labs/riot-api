@@ -106,6 +106,14 @@ export class RiotClient implements IRiotClient {
     );
   }
 
+  public async getEntitlementToken(): Promise<EntitlementResponse> {
+    const authData = await this.config.authProvider.getAuthData();
+    if (!authData) {
+      throw new Error('No authentication data available');
+    }
+    return this.getEntitlement(authData.accessToken);
+  }
+
   // Internal method to get entitlement
   // Accepts the current accessToken so it can auto-invalidate when token changes
   private async getEntitlement(accessToken: string): Promise<EntitlementResponse> {
