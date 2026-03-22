@@ -6,3 +6,4 @@ export * from './MatchDetails';
 export * from './MatchHistory';
 export * from './NameService';
 export * from './PlayerLoadout';
+export * from './PlayerMMR';

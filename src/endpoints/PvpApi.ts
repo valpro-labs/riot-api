@@ -1,6 +1,7 @@
 import type { AccountXPResponse } from '../types/Pvp/AccountXP';
 import type { CompetitiveUpdatesResponse } from '../types/Pvp/CompetitiveUpdates';
 import type { PlayerLoadoutResponse } from '../types/Pvp/PlayerLoadout';
+import type { PlayerMMRResponse } from '../types/Pvp/PlayerMMR';
 import type { MatchHistoryResponse } from '../types/Pvp/MatchHistory';
 import type { MatchDetailsResponse } from '../types/Pvp/MatchDetails';
 import type { NameServiceResponse } from '../types/Pvp/NameService';
@@ -55,6 +56,20 @@ export class PvpApi {
     return this.client.requestPD<PlayerLoadoutResponse>(
       region,
       `personalization/v2/players/${uuid}/playerloadout`,
+      {
+        method: 'GET',
+        signal: options?.signal,
+      }
+    );
+  }
+
+  /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/player-mmr)
+   */
+  public async getPlayerMMR(region: Region, uuid: string, options?: RequestOptions) {
+    return this.client.requestPD<PlayerMMRResponse>(
+      region,
+      `mmr/v1/players/${uuid}`,
       {
         method: 'GET',
         signal: options?.signal,
