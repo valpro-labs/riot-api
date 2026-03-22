@@ -6,10 +6,9 @@ import type { MatchHistoryResponse } from '../types/Pvp/MatchHistory';
 import type { MatchDetailsResponse } from '../types/Pvp/MatchDetails';
 import type { NameServiceResponse } from '../types/Pvp/NameService';
 import type { FetchContentResponse } from '../types/Pvp/FetchContent';
+import type { DailyTicketResponse } from '../types/Pvp/DailyTicket';
 
 import type { Region } from '../types/Shared/ValorantType';
-
-import type { DailyTicketResponse } from '../types/Pvp/DailyTicket';
 
 import { IRiotClient } from '../types/Base/IRiotClient';
 import { RequestOptions } from '../types/Base/RequestOptions';
