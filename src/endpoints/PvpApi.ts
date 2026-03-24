@@ -54,7 +54,7 @@ export class PvpApi {
   public async getPlayerLoadout(region: Region, uuid: string, options?: RequestOptions) {
     return this.client.requestPD<PlayerLoadoutResponse>(
       region,
-      `personalization/v2/players/${uuid}/playerloadout`,
+      `personalization/v3/players/${uuid}/playerloadout`,
       {
         method: 'GET',
         signal: options?.signal,

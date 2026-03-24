@@ -53,7 +53,7 @@ describe('Riot API Endpoints', () => {
 
     it('getPlayerLoadout formats resource', async () => {
       await api.getPlayerLoadout('na', 'uuid-123');
-      expect(mockClient.requestPD).toHaveBeenCalledWith('na', 'personalization/v2/players/uuid-123/playerloadout', { method: 'GET' });
+      expect(mockClient.requestPD).toHaveBeenCalledWith('na', 'personalization/v3/players/uuid-123/playerloadout', { method: 'GET' });
     });
 
     it('getMatchHistory appends queue if provided', async () => {

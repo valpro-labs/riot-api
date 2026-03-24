@@ -13,16 +13,15 @@ export const LoadoutGunSchema = z.object({
   ID: weakUUIDSchema,
   CharmInstanceID: weakUUIDSchema.optional(),
   CharmID: weakUUIDSchema.optional(),
-  CharmIDLevelID: weakUUIDSchema.optional(),
+  CharmLevelID: weakUUIDSchema.optional(),
 }).merge(GunCommonSchema);
 export type LoadoutGun = z.input<typeof LoadoutGunSchema>;
 
-export const LoadoutSpraySchema = z.object({
-  EquipSlotID: weakUUIDSchema,
-  SprayID: weakUUIDSchema,
-  SprayLevelID: z.null(),
+export const ActiveExpressionSchema = z.object({
+  TypeID: weakUUIDSchema,
+  AssetID: weakUUIDSchema,
 });
-export type LoadoutSpray = z.input<typeof LoadoutSpraySchema>;
+export type ActiveExpression = z.input<typeof ActiveExpressionSchema>;
 
 export const LoadoutIdentitySchema = z.object({
   PlayerCardID: weakUUIDSchema,
@@ -37,10 +36,10 @@ export const PlayerLoadoutSchema = z.object({
   Subject: playerUUIDSchema,
   Version: z.number(),
   Guns: z.array(LoadoutGunSchema),
-  Sprays: z.array(LoadoutSpraySchema),
+  ActiveExpressions: z.array(ActiveExpressionSchema),
+  DynamicOptions: z.unknown().nullable(),
   Identity: LoadoutIdentitySchema,
   Incognito: z.boolean(),
 });
-
 
 export type PlayerLoadoutResponse = z.input<typeof PlayerLoadoutSchema>;
