@@ -1,13 +1,13 @@
-import { RiotClient } from '../src/RiotClient';
+import { RiotClient } from '../src/core/RiotClient';
 import { AuthApi } from '../src/endpoints/AuthApi';
 import { PvpApi } from '../src/endpoints/PvpApi';
 import { StoreApi } from '../src/endpoints/StoreApi';
 import { ContractApi } from '../src/endpoints/ContractApi';
 import { PreGameApi } from '../src/endpoints/PreGameApi';
 
-import { VALORANT_ITEM_TYPES } from '../src/types/ValorantType';
+import { ITEM_TYPES } from '../src/types/Shared/ValorantType';
 
-jest.mock('../src/RiotClient');
+jest.mock('../src/core/RiotClient');
 
 describe('Riot API Endpoints', () => {
   let mockClient: jest.Mocked<RiotClient>;
@@ -95,8 +95,8 @@ describe('Riot API Endpoints', () => {
     });
 
     it('getOwnedItems appends itemTypeID', async () => {
-      await api.getOwnedItems('na', 'uuid-123', VALORANT_ITEM_TYPES.AGENT);
-      expect(mockClient.requestPD).toHaveBeenCalledWith('na', `store/v1/entitlements/uuid-123/${VALORANT_ITEM_TYPES.AGENT}`, { method: 'GET' });
+      await api.getOwnedItems('na', 'uuid-123', ITEM_TYPES.AGENT);
+      expect(mockClient.requestPD).toHaveBeenCalledWith('na', `store/v1/entitlements/uuid-123/${ITEM_TYPES.AGENT}`, { method: 'GET' });
     });
   });
 
@@ -116,12 +116,12 @@ describe('Riot API Endpoints', () => {
 
     it('getPreGamePlayer calls GLZ', async () => {
       await api.getPreGamePlayer('na', 'uuid-123');
-      expect(mockClient.requestGLZ).toHaveBeenCalledWith('na', 'pregame/v1/players/uuid-123');
+      expect(mockClient.requestGLZ).toHaveBeenCalledWith('na', 'pregame/v1/players/uuid-123', expect.objectContaining({}));
     });
 
     it('getPreGameMatch calls GLZ with matchId', async () => {
       await api.getPreGameMatch('na', 'match-id');
-      expect(mockClient.requestGLZ).toHaveBeenCalledWith('na', 'pregame/v1/matches/match-id');
+      expect(mockClient.requestGLZ).toHaveBeenCalledWith('na', 'pregame/v1/matches/match-id', expect.objectContaining({}));
     });
 
     it('postSelectCharacter uses POST', async () => {
