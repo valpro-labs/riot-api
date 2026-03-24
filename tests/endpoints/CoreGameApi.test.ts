@@ -1,16 +1,20 @@
-import { RiotClient } from '../../src/core/RiotClient';
+import { IRiotClient } from '../../src/types/Base/IRiotClient';
 import { CoreGameApi } from '../../src/endpoints/CoreGameApi';
 
-jest.mock('../../src/core/RiotClient');
-
 describe('CoreGameApi', () => {
-  let mockClient: jest.Mocked<RiotClient>;
+  let mockClient: jest.Mocked<IRiotClient>;
   let api: CoreGameApi;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    mockClient = new RiotClient({} as any) as jest.Mocked<RiotClient>;
-    mockClient.requestGLZ = jest.fn();
+    mockClient = {
+      request: jest.fn(),
+      requestPD: jest.fn(),
+      requestShared: jest.fn(),
+      requestGLZ: jest.fn(),
+      getAuthProvider: jest.fn(),
+      getEntitlementToken: jest.fn(),
+    };
     api = new CoreGameApi(mockClient);
   });
 

@@ -13,9 +13,8 @@ describe('reauth.common', () => {
       expect(isReauthSuccessful('https://example.com/error')).toBe(false);
     });
 
-    it('returns false for null/undefined location', () => {
-      expect(isReauthSuccessful(null as any)).toBe(false);
-      expect(isReauthSuccessful(undefined as any)).toBe(false);
+    it('returns false for empty string location', () => {
+      expect(isReauthSuccessful('')).toBe(false);
     });
   });
 
