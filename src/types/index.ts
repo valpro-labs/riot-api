@@ -8,3 +8,4 @@ export * from './Shared';
 export * from './Store';
 export * from './CoreGame';
 export * from './Party/Party';
+export * from './Favorites';

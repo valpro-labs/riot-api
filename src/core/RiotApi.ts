@@ -9,6 +9,7 @@ import { PreGameApi } from '../endpoints/PreGameApi';
 import { NewsFeedApi } from '../endpoints/NewsFeedApi';
 import { PartyApi } from '../endpoints/PartyApi';
 import { CoreGameApi } from '../endpoints/CoreGameApi';
+import { FavoritesApi } from '../endpoints/FavoritesApi';
 
 import { RiotClientConfig } from '../types/Base/RiotClientConfig';
 
@@ -23,6 +24,7 @@ class RiotApi {
   public newsFeedApi: NewsFeedApi;
   public partyApi: PartyApi;
   public coreGameApi: CoreGameApi;
+  public favoritesApi: FavoritesApi;
 
   constructor(config: RiotClientConfig) {
     this.client = new RiotClient({
@@ -38,6 +40,7 @@ class RiotApi {
     this.newsFeedApi = new NewsFeedApi(this.client);
     this.partyApi = new PartyApi(this.client);
     this.coreGameApi = new CoreGameApi(this.client);
+    this.favoritesApi = new FavoritesApi(this.client);
   }
 }
 
