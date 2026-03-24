@@ -1,7 +1,7 @@
 import {
   ITEM_TYPES,
   CURRENCY_TYPES,
-} from '../../src/types/ValorantType';
+} from '../../src/types/Shared/ValorantType';
 
 describe('ValorantType Constants', () => {
   it('has correctly formatted UUID strings for ITEM_TYPES', () => {

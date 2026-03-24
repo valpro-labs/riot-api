@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import { RiotClient } from '../src/RiotClient';
+import { RiotClient } from '../src/core/RiotClient';
 
-import { IAuthProvider } from '../src/types/IAuthProvider';
-import { IVersionProvider } from '../src/types/IVersionProvider';
+import { IAuthProvider } from '../src/types/Base/IAuthProvider';
+import { IVersionProvider } from '../src/types/Base/IVersionProvider';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -150,15 +150,15 @@ describe('RiotClient', () => {
       });
 
       // Call twice concurrently
-      const p1 = (client as any).getEntitlement();
-      const p2 = (client as any).getEntitlement();
+      const p1 = (client as any).getEntitlement('mock-access');
+      const p2 = (client as any).getEntitlement('mock-access');
 
       await Promise.all([p1, p2]);
 
       expect(mockPost).toHaveBeenCalledTimes(1); // Should only make one network request
 
       // A setup where the cache is hit
-      await (client as any).getEntitlement();
+      await (client as any).getEntitlement('mock-access');
       expect(mockPost).toHaveBeenCalledTimes(1); // Still 1
     });
 

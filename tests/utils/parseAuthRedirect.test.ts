@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 
-import { parseAuthRedirect } from '../../src/utils/parseAuthRedirect';
+import { parseAuthRedirect } from '../../src/auth/parse';
 
 jest.mock('jwt-decode', () => ({
   jwtDecode: jest.fn(),
