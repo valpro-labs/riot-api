@@ -63,6 +63,21 @@ export class PvpApi {
   }
 
   /**
+   * [API Docs](https://valapidocs.techchrism.me/endpoint/set-player-loadout)
+   */
+  public async putPlayerLoadout(region: Region, uuid: string, loadout: PlayerLoadoutResponse, options?: RequestOptions) {
+    return this.client.requestPD<PlayerLoadoutResponse>(
+      region,
+      `personalization/v3/players/${uuid}/playerloadout`,
+      {
+        method: 'PUT',
+        data: loadout,
+        signal: options?.signal,
+      }
+    );
+  }
+
+  /**
    * [API Docs](https://valapidocs.techchrism.me/endpoint/player-mmr)
    */
   public async getPlayerMMR(region: Region, uuid: string, options?: RequestOptions) {
