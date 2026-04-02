@@ -13,20 +13,5 @@ export const FavoritesResponseSchema = z.object({
 });
 export type FavoritesResponse = z.input<typeof FavoritesResponseSchema>;
 
-export const CreateFavoriteBodySchema = z.object({
-  ItemID: weakUUIDSchema,
-  ItemTypeID: weakUUIDSchema,
-});
-export type CreateFavoriteBody = z.input<typeof CreateFavoriteBodySchema>;
-
-export const CreateFavoriteResponseSchema = FavoriteItemSchema;
-export type CreateFavoriteResponse = z.input<typeof CreateFavoriteResponseSchema>;
-
-export const ModifyFavoritesBodySchema = CreateFavoriteBodySchema;
-export type ModifyFavoritesBody = z.input<typeof ModifyFavoritesBodySchema>;
-
-export const ModifyFavoritesResponseSchema = FavoritesResponseSchema;
-export type ModifyFavoritesResponse = z.input<typeof ModifyFavoritesResponseSchema>;
-
 export const DeleteFavoriteResponseSchema = FavoriteItemSchema;
 export type DeleteFavoriteResponse = z.input<typeof DeleteFavoriteResponseSchema>;
