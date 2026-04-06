@@ -4,6 +4,7 @@ import { itemIDSchema, weakUUIDSchema } from '../Shared/Common';
 export const OwnedEntitlementSchema = z.object({
   TypeID: weakUUIDSchema,
   ItemID: itemIDSchema,
+  InstanceID: weakUUIDSchema.optional(),
   Tiers: z.string().optional(),
 });
 export type OwnedEntitlement = z.input<typeof OwnedEntitlementSchema>;
