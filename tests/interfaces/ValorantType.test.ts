@@ -9,7 +9,7 @@ describe('ValorantType Constants', () => {
 
     expect(ITEM_TYPES.AGENT).toMatch(uuidRegex);
     expect(ITEM_TYPES.GUN_BUDDY).toMatch(uuidRegex);
-    expect(ITEM_TYPES.SPARY).toMatch(uuidRegex);
+    expect(ITEM_TYPES.SPRAY).toMatch(uuidRegex);
     expect(ITEM_TYPES.CARD).toMatch(uuidRegex);
     expect(ITEM_TYPES.TITLE).toMatch(uuidRegex);
     expect(ITEM_TYPES.CONTRACT).toMatch(uuidRegex);
@@ -38,7 +38,7 @@ describe('ValorantType Constants', () => {
       AGENT: '01bb38e1-da47-4e6a-9b3d-945fe4655707',
       CONTRACT: 'f85cb6f7-33e5-4dc8-b609-ec7212301948',
       GUN_BUDDY: 'dd3bf334-87f3-40bd-b043-682a57a8dc3a',
-      SPARY: 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475',
+      SPRAY: 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475',
       CARD: '3f296c07-64c3-494c-923b-fe692a4fa1bd',
       TITLE: 'de7caa6b-adf7-4588-bbd1-143831e786c6',
       SKIN: 'e7c63390-eda7-46e0-bb7a-a6abdacd2433',

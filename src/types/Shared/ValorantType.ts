@@ -19,7 +19,7 @@ export type CurrencyTypeID = z.input<typeof CurrencyTypeIDSchema>;
 export const ITEM_TYPES = {
   AGENT: '01bb38e1-da47-4e6a-9b3d-945fe4655707',
   CONTRACT: 'f85cb6f7-33e5-4dc8-b609-ec7212301948',
-  SPARY: 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475',
+  SPRAY: 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475',
   GUN_BUDDY: 'dd3bf334-87f3-40bd-b043-682a57a8dc3a',
   CARD: '3f296c07-64c3-494c-923b-fe692a4fa1bd',
   SKIN: 'e7c63390-eda7-46e0-bb7a-a6abdacd2433',
