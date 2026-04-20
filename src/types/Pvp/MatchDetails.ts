@@ -266,6 +266,7 @@ export const RoundResultSchema = z.object({
   roundResult: z.enum(['Eliminated', 'Bomb detonated', 'Bomb defused', 'Surrendered', 'Round timer expired']),
   roundCeremony: z.enum(['CeremonyDefault', 'CeremonyTeamAce', 'CeremonyFlawless', 'CeremonyCloser', 'CeremonyClutch', 'CeremonyThrifty', 'CeremonyAce', '']),
   winningTeam: teamOrPlayerSchema,
+  winningTeamRole: z.enum(['Attacker', 'Defender', '']).optional(),
   bombPlanter: playerUUIDSchema.optional(),
   bombDefuser: teamOrPlayerSchema.optional(),
   plantRoundTime: z.number().optional(),
