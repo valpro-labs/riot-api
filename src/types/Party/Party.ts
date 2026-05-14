@@ -145,6 +145,9 @@ export const PartySchema = z.object({
 });
 export type PartyResponse = z.input<typeof PartySchema>;
 
+export const PartyInviteResponseSchema = PartySchema;
+export type PartyInviteResponse = z.input<typeof PartyInviteResponseSchema>;
+
 export const PartyPlatformInfoSchema = z.object({
   platformType: z.literal('PC'),
   platformOS: z.literal('Windows'),

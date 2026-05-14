@@ -26,6 +26,14 @@ describe('PartyApi', () => {
     );
   });
 
+  it('leaveParty uses DELETE with player UUID', async () => {
+    await api.leaveParty('na', 'puuid-123');
+    expect(mockClient.requestGLZ).toHaveBeenCalledWith(
+      'na', 'parties/v1/players/puuid-123',
+      expect.objectContaining({ method: 'DELETE' })
+    );
+  });
+
   it('changeQueue sends queueID in data', async () => {
     await api.changeQueue('na', 'party-id', 'competitive');
     expect(mockClient.requestGLZ).toHaveBeenCalledWith(
@@ -55,6 +63,14 @@ describe('PartyApi', () => {
     expect(mockClient.requestGLZ).toHaveBeenCalledWith(
       'eu', 'parties/v1/parties/party-id/invitecode',
       expect.objectContaining({ method: 'DELETE' })
+    );
+  });
+
+  it('inviteFriend sends encoded Riot ID in URL', async () => {
+    await api.inviteFriend('na', 'party-id', 'Cool Player', 'NA#1');
+    expect(mockClient.requestGLZ).toHaveBeenCalledWith(
+      'na', 'parties/v1/parties/party-id/invites/name/Cool%20Player/tag/NA%231',
+      expect.objectContaining({ method: 'POST' })
     );
   });
 
