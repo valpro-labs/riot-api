@@ -259,4 +259,19 @@ export class PartyApi {
       }
     );
   }
+
+  /**
+   * Set the preferred game pods for the party
+   */
+  public async setPreferredGamePods(region: Region, partyId: string, gamePodIds: string[], options?: RequestOptions) {
+    return this.client.requestGLZ<PartyResponse>(
+      region,
+      `parties/v1/parties/${partyId}/preferredgamepods`,
+      {
+        method: 'POST',
+        data: { GamePodIDS: gamePodIds },
+        signal: options?.signal,
+      }
+    );
+  }
 }
