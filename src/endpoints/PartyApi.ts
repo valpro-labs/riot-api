@@ -218,6 +218,21 @@ export class PartyApi {
   }
 
   /**
+   * Convert the party back to a default (non-custom) queue
+   */
+  public async convertToDefault(region: Region, partyId: string, queueId?: string, options?: RequestOptions) {
+    const query = queueId ? `?queueID=${encodeURIComponent(queueId)}` : '';
+    return this.client.requestGLZ<PartyResponse>(
+      region,
+      `parties/v1/parties/${partyId}/converttodefault${query}`,
+      {
+        method: 'POST',
+        signal: options?.signal,
+      }
+    );
+  }
+
+  /**
    * Convert the party into a custom game lobby
    */
   public async makeCustomGame(region: Region, partyId: string, options?: RequestOptions) {
