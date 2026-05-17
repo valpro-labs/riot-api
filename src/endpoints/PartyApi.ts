@@ -137,8 +137,22 @@ export class PartyApi {
   }
 
   /**
+   * Get the party information for the given player.
+   */
+  public async getPlayerParty(region: Region, puuid: string, options?: RequestOptions) {
+    return this.client.requestGLZ<PartyResponse>(
+      region,
+      `parties/v1/players/${puuid}`,
+      {
+        method: 'GET',
+        signal: options?.signal,
+      }
+    );
+  }
+
+  /**
    * [API Docs](https://valapidocs.techchrism.me/endpoint/party-join-by-code)
-   * 
+   *
    * Join a party by code
    */
   public async joinPartyByCode(region: Region, code: string, options?: RequestOptions) {
