@@ -1,6 +1,6 @@
 {
   "name": "@valpro-labs/riot-api",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "A typed TypeScript client for Riot API",
   "homepage": "https://github.com/valpro-labs/riot-api#readme",
   "bugs": {
