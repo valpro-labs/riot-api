@@ -32,14 +32,12 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-remove-player)
-   * 
-   * Leave the current party by removing the player from it.
+   * Remove a player from a party.
    */
-  public async leaveParty(region: Region, puuid: string, options?: RequestOptions) {
-    return this.client.requestGLZ<void>(
+  public async leaveFromParty(region: Region, partyId: string, playerId: string, options?: RequestOptions) {
+    return this.client.requestGLZ<PartyResponse>(
       region,
-      `parties/v1/players/${puuid}`,
+      `parties/v1/parties/${partyId}/members/${playerId}`,
       {
         method: 'DELETE',
         signal: options?.signal,
