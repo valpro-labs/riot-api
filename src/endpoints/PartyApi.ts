@@ -203,13 +203,41 @@ export class PartyApi {
 
   /**
    * [API Docs](https://valapidocs.techchrism.me/endpoint/start-custom-game)
-   * 
+   *
    * Start a custom game
    */
   public async startCustomGame(region: Region, partyId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PartyResponse>(
       region,
       `parties/v1/parties/${partyId}/startcustomgame`,
+      {
+        method: 'POST',
+        signal: options?.signal,
+      }
+    );
+  }
+
+  /**
+   * Convert the party into a custom game lobby
+   */
+  public async makeCustomGame(region: Region, partyId: string, options?: RequestOptions) {
+    return this.client.requestGLZ<PartyResponse>(
+      region,
+      `parties/v1/parties/${partyId}/makecustomgame`,
+      {
+        method: 'POST',
+        signal: options?.signal,
+      }
+    );
+  }
+
+  /**
+   * Transfer party ownership to another member
+   */
+  public async transferOwner(region: Region, partyId: string, playerId: string, options?: RequestOptions) {
+    return this.client.requestGLZ<PartyResponse>(
+      region,
+      `parties/v1/parties/${partyId}/members/${playerId}/owner`,
       {
         method: 'POST',
         signal: options?.signal,
