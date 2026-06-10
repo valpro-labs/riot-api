@@ -16,7 +16,7 @@ export class StoreApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/storefront)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/storefront)
    */
   public async postStorefront(region: Region, uuid: string, options?: RequestOptions) {
 

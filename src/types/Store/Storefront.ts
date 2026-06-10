@@ -14,12 +14,16 @@ export const OfferRewardSchema = z.object({
 });
 export type OfferReward = z.input<typeof OfferRewardSchema>;
 
-export const OfferSchema = z.object({
+export const OfferBaseSchema = z.object({
   OfferID: z.string(),
-  IsDirectPurchase: z.boolean(),
   StartDate: dateSchema,
   Cost: z.record(currencyIDSchema, z.number()),
   Rewards: z.array(OfferRewardSchema),
+});
+export type OfferBase = z.input<typeof OfferBaseSchema>;
+
+export const OfferSchema = OfferBaseSchema.extend({
+  IsDirectPurchase: z.boolean(),
 });
 export type Offer = z.input<typeof OfferSchema>;
 
@@ -44,7 +48,7 @@ export const BundleItemOfferSchema = z.object({
   BundleItemOfferID: weakUUIDSchema,
   Offer: OfferSchema,
   DiscountPercent: z.number(),
-  DiscountedCost: z.record(weakUUIDSchema, z.number()),
+  DiscountedCost: z.record(currencyIDSchema, z.number()),
 });
 export type BundleItemOffer = z.input<typeof BundleItemOfferSchema>;
 
@@ -54,8 +58,8 @@ export const BundleSchema = z.object({
   CurrencyID: currencyIDSchema,
   Items: z.array(BundleItemSchema),
   ItemOffers: z.array(BundleItemOfferSchema).nullable(),
-  TotalBaseCost: z.record(weakUUIDSchema, z.number()).nullable(),
-  TotalDiscountedCost: z.record(weakUUIDSchema, z.number()).nullable(),
+  TotalBaseCost: z.record(currencyIDSchema, z.number()).nullable(),
+  TotalDiscountedCost: z.record(currencyIDSchema, z.number()).nullable(),
   TotalDiscountPercent: z.number(),
   DurationRemainingInSeconds: z.number(),
   WholesaleOnly: z.boolean(),
@@ -66,7 +70,7 @@ export const BonusOfferSchema = z.object({
   BonusOfferID: weakUUIDSchema,
   Offer: OfferSchema,
   DiscountPercent: z.number(),
-  DiscountCosts: z.record(weakUUIDSchema, z.number()),
+  DiscountCosts: z.record(currencyIDSchema, z.number()),
   IsSeen: z.boolean(),
 });
 export type BonusOffer = z.input<typeof BonusOfferSchema>;
@@ -79,7 +83,7 @@ export const FeaturedBundleSchema = z.object({
 export type FeaturedBundle = z.input<typeof FeaturedBundleSchema>;
 
 export const SkinsPanelLayoutSchema = z.object({
-  SingleItemOffers: z.array(itemIDSchema),
+  SingleItemOffers: z.array(z.string()),
   SingleItemStoreOffers: z.array(OfferSchema),
   SingleItemOffersRemainingDurationInSeconds: z.number(),
 });
@@ -117,11 +121,30 @@ export const BonusStoreSchema = z.object({
 });
 export type BonusStore = z.input<typeof BonusStoreSchema>;
 
+export const PluginStoreOfferSchema = OfferBaseSchema.extend({
+  OfferID: weakUUIDSchema,
+  StorefrontItemID: weakUUIDSchema,
+  EndDate: dateSchema,
+  Priority: z.number(),
+});
+export type PluginStoreOffer = z.input<typeof PluginStoreOfferSchema>;
+
+export const PluginStoreSchema = z.object({
+  PluginID: weakUUIDSchema,
+  PluginInstanceID: weakUUIDSchema,
+  StorefrontItemID: weakUUIDSchema,
+  Offers: z.array(PluginStoreOfferSchema),
+  DurationRemainingInSeconds: z.number(),
+  StorefrontExpiry: dateSchema,
+});
+export type PluginStore = z.input<typeof PluginStoreSchema>;
+
 export const StorefrontSchema = z.object({
   FeaturedBundle: FeaturedBundleSchema,
   SkinsPanelLayout: SkinsPanelLayoutSchema,
   UpgradeCurrencyStore: UpgradeCurrencyStoreSchema,
   AccessoryStore: AccessoryStoreSchema,
+  PluginStores: z.array(PluginStoreSchema),
   BonusStore: BonusStoreSchema.optional(),
 });
 
