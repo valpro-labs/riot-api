@@ -63,6 +63,7 @@ export const BundleSchema = z.object({
   TotalDiscountPercent: z.number(),
   DurationRemainingInSeconds: z.number(),
   WholesaleOnly: z.boolean(),
+  IsGiftable: z.union([z.boolean(), z.number()]).optional(),
 });
 export type Bundle = z.input<typeof BundleSchema>;
 
@@ -78,6 +79,12 @@ export type BonusOffer = z.input<typeof BonusOfferSchema>;
 export const FeaturedBundleSchema = z.object({
   Bundle: BundleSchema,
   Bundles: z.array(BundleSchema),
+  FeaturedTileEntries: z.array(z.object({
+    Type: z.number(),
+    Entry: z.object({
+      Bundle: BundleSchema,
+    }),
+  })).optional(),
   BundleRemainingDurationInSeconds: z.number(),
 });
 export type FeaturedBundle = z.input<typeof FeaturedBundleSchema>;
@@ -129,7 +136,7 @@ export const PluginStoreOfferSchema = OfferBaseSchema.extend({
 });
 export type PluginStoreOffer = z.input<typeof PluginStoreOfferSchema>;
 
-export const PluginStoreSchema = z.object({
+export const LegacyPluginStoreSchema = z.object({
   PluginID: weakUUIDSchema,
   PluginInstanceID: weakUUIDSchema,
   StorefrontItemID: weakUUIDSchema,
@@ -137,6 +144,50 @@ export const PluginStoreSchema = z.object({
   DurationRemainingInSeconds: z.number(),
   StorefrontExpiry: dateSchema,
 });
+
+export const PluginStorePurchaseInformationSchema = z.object({
+  DataAssetID: weakUUIDSchema,
+  OfferID: weakUUIDSchema,
+  OfferType: z.number(),
+  StartDate: dateSchema,
+  PrimaryCurrencyID: currencyIDSchema,
+  Cost: z.record(currencyIDSchema, z.number()),
+  DiscountedCost: z.record(currencyIDSchema, z.number()),
+  DiscountedPercentage: z.number(),
+  Rewards: z.array(OfferRewardSchema),
+  AdditionalContext: z.array(z.unknown()),
+  WholesaleOnly: z.boolean(),
+  IsGiftable: z.number(),
+});
+export type PluginStorePurchaseInformation = z.input<typeof PluginStorePurchaseInformationSchema>;
+
+export const PluginStoreSubOfferSchema = z.object({
+  PurchaseInformation: PluginStorePurchaseInformationSchema,
+});
+export type PluginStoreSubOffer = z.input<typeof PluginStoreSubOfferSchema>;
+
+export const PluginStoreStoreOfferSchema = z.object({
+  PurchaseInformation: PluginStorePurchaseInformationSchema,
+  SubOffers: z.array(PluginStoreSubOfferSchema),
+});
+export type PluginStoreStoreOffer = z.input<typeof PluginStoreStoreOfferSchema>;
+
+export const PluginStoreOffersSchema = z.object({
+  StoreOffers: z.array(PluginStoreStoreOfferSchema),
+  RemainingDurationInSeconds: z.number(),
+});
+export type PluginStoreOffers = z.input<typeof PluginStoreOffersSchema>;
+
+export const PluginStoreWithOffersSchema = z.object({
+  PluginID: weakUUIDSchema,
+  PluginOffers: PluginStoreOffersSchema,
+  StartDate: dateSchema,
+});
+
+export const PluginStoreSchema = z.union([
+  PluginStoreWithOffersSchema,
+  LegacyPluginStoreSchema,
+]);
 export type PluginStore = z.input<typeof PluginStoreSchema>;
 
 export const StorefrontSchema = z.object({

@@ -128,4 +128,141 @@ describe('StorefrontSchema', () => {
 
     expect(result.success).toBe(true);
   });
+
+  it('parses storefront responses with plugin offer stores', () => {
+    const currencyID = uuid(1);
+    const itemTypeID = uuid(2);
+    const itemID = uuid(3);
+    const startDate = '0001-01-01T00:00:00Z';
+
+    const offer = {
+      OfferID: uuid(4),
+      IsDirectPurchase: true,
+      StartDate: startDate,
+      Cost: {
+        [currencyID]: 875,
+      },
+      Rewards: [
+        {
+          ItemTypeID: itemTypeID,
+          ItemID: itemID,
+          Quantity: 1,
+        },
+      ],
+    };
+
+    const bundle = {
+      ID: uuid(5),
+      DataAssetID: uuid(6),
+      CurrencyID: currencyID,
+      Items: [
+        {
+          Item: {
+            ItemTypeID: itemTypeID,
+            ItemID: itemID,
+            Amount: 1,
+          },
+          BasePrice: 875,
+          CurrencyID: currencyID,
+          DiscountPercent: 0,
+          DiscountedPrice: 875,
+          IsPromoItem: false,
+        },
+      ],
+      ItemOffers: null,
+      TotalBaseCost: null,
+      TotalDiscountedCost: null,
+      TotalDiscountPercent: 0,
+      DurationRemainingInSeconds: 86400,
+      WholesaleOnly: false,
+      IsGiftable: 0,
+    };
+
+    const purchaseInformation = {
+      DataAssetID: uuid(7),
+      OfferID: uuid(8),
+      OfferType: 0,
+      StartDate: startDate,
+      PrimaryCurrencyID: currencyID,
+      Cost: {
+        [currencyID]: 875,
+      },
+      DiscountedCost: {
+        [currencyID]: 575,
+      },
+      DiscountedPercentage: 35,
+      Rewards: [
+        {
+          ItemTypeID: itemTypeID,
+          ItemID: itemID,
+          Quantity: 1,
+        },
+      ],
+      AdditionalContext: [],
+      WholesaleOnly: false,
+      IsGiftable: 0,
+    };
+
+    const result = StorefrontSchema.safeParse({
+      FeaturedBundle: {
+        Bundle: bundle,
+        Bundles: [bundle],
+        FeaturedTileEntries: [
+          {
+            Type: 0,
+            Entry: {
+              Bundle: bundle,
+            },
+          },
+        ],
+        BundleRemainingDurationInSeconds: 86400,
+      },
+      SkinsPanelLayout: {
+        SingleItemOffers: [itemID],
+        SingleItemStoreOffers: [offer],
+        SingleItemOffersRemainingDurationInSeconds: 86400,
+      },
+      UpgradeCurrencyStore: {
+        UpgradeCurrencyOffers: [
+          {
+            OfferID: uuid(9),
+            StorefrontItemID: itemID,
+            Offer: offer,
+            DiscountedPercent: 0,
+          },
+        ],
+      },
+      AccessoryStore: {
+        AccessoryStoreOffers: [
+          {
+            Offer: offer,
+            ContractID: uuid(10),
+          },
+        ],
+        AccessoryStoreRemainingDurationInSeconds: 86400,
+        StorefrontID: uuid(11),
+      },
+      PluginStores: [
+        {
+          PluginID: uuid(12),
+          PluginOffers: {
+            StoreOffers: [
+              {
+                PurchaseInformation: purchaseInformation,
+                SubOffers: [
+                  {
+                    PurchaseInformation: purchaseInformation,
+                  },
+                ],
+              },
+            ],
+            RemainingDurationInSeconds: 0,
+          },
+          StartDate: startDate,
+        },
+      ],
+    });
+
+    expect(result.success).toBe(true);
+  });
 });
