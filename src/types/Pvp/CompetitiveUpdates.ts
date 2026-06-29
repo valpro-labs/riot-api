@@ -1,9 +1,10 @@
 import { z } from 'zod';
-import { playerUUIDSchema, mapIDSchema, seasonIDSchema, millisSchema } from '../Shared/Common';
+import { playerUUIDSchema, matchIDSchema, mapIDSchema, queueIDSchema, seasonIDSchema, millisSchema } from '../Shared/Common';
 
 export const CompetitiveMatchUpdateSchema = z.object({
-  MatchID: z.string(),
+  MatchID: matchIDSchema,
   MapID: mapIDSchema,
+  QueueID: queueIDSchema,
   SeasonID: seasonIDSchema,
   MatchStartTime: millisSchema,
   TierAfterUpdate: z.number(),
@@ -12,8 +13,12 @@ export const CompetitiveMatchUpdateSchema = z.object({
   RankedRatingBeforeUpdate: z.number(),
   RankedRatingEarned: z.number(),
   RankedRatingPerformanceBonus: z.number(),
+  RankedRatingRefundApplied: z.number(),
+  NewMapIncentiveRRForgiven: z.number(),
   CompetitiveMovement: z.literal('MOVEMENT_UNKNOWN'),
   AFKPenalty: z.number(),
+  WasDerankProtected: z.boolean(),
+  WasDerankProtectionReplenished: z.boolean(),
 });
 export type CompetitiveMatchUpdate = z.input<typeof CompetitiveMatchUpdateSchema>;
 
