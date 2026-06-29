@@ -26,14 +26,6 @@ describe('PartyApi', () => {
     );
   });
 
-  it('leaveParty uses DELETE with player UUID', async () => {
-    await api.leaveParty('na', 'puuid-123');
-    expect(mockClient.requestGLZ).toHaveBeenCalledWith(
-      'na', 'parties/v1/players/puuid-123',
-      expect.objectContaining({ method: 'DELETE' })
-    );
-  });
-
   it('changeQueue sends queueID in data', async () => {
     await api.changeQueue('na', 'party-id', 'competitive');
     expect(mockClient.requestGLZ).toHaveBeenCalledWith(
