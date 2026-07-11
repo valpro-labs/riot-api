@@ -58,7 +58,7 @@ export const PlayerMMRSchema = z.object({
   OnboardingStatus: z.string(),
   IsAtDerankProtectedTier: z.boolean(),
   DerankProtectedGamesRemaining: z.number(),
-  DerankProtectedStatus: z.string(),
+  DerankProtectedStatus: z.enum(['Full', 'Partial', 'None']),
   QueueSkills: z.record(z.string(), PlayerMMRQueueSkillSchema),
 });
 
