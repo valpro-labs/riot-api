@@ -17,7 +17,7 @@ export class PreGameApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/pre-game-player)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/pre-game-player)
    */
   public async getPreGamePlayer(region: Region, uuid: string, options?: RequestOptions) {
     return this.client.requestGLZ<PregamePlayerResponse>(
@@ -28,7 +28,7 @@ export class PreGameApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/pre-game-match)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/pre-game-match)
    */
   public async getPreGameMatch(region: Region, matchId: string, options?: RequestOptions) {
     return this.client.requestGLZ<PregameMatchResponse>(
@@ -39,7 +39,7 @@ export class PreGameApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/select-character)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/select-character)
    */
   public async postSelectCharacter(region: Region, matchId: string, agentId: string, options?: RequestOptions) {
 
@@ -54,7 +54,7 @@ export class PreGameApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/lock-character)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/lock-character)
    */
   public async postLockCharacter(region: Region, matchId: string, agentId: string, options?: RequestOptions) {
 
@@ -69,7 +69,7 @@ export class PreGameApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/pre-game-quit)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/pre-game-quit)
    *
    * Quit the pre-game lobby
    */

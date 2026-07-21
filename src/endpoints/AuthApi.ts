@@ -13,7 +13,7 @@ export class AuthApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/player-info)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/player-info)
    */
   public async getPlayerInfo(options?: RequestOptions) {
     return this.client.request<PlayerInfoResponse>(
@@ -26,7 +26,7 @@ export class AuthApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/riot-geo)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/riot-geo)
    */
   public async putRiotGeo(options?: RequestOptions) {
     const authData = await this.client.getAuthProvider().getAuthData();
@@ -48,7 +48,7 @@ export class AuthApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/pas-token)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/pas-token)
    */
   public async getPasToken(options?: RequestOptions) {
     const authData = await this.client.getAuthProvider().getAuthData();

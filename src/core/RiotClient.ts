@@ -83,7 +83,7 @@ export class RiotClient implements IRiotClient {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/entitlement)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/entitlement)
    */
   private async postEntitlement() {
     return this.request<EntitlementResponse>(

@@ -16,7 +16,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/party)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/party)
    * 
    * Get the party information for the given party ID.
    */
@@ -46,7 +46,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/change-queue)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/change-queue)
    * 
    * Change the queue for the party
    */
@@ -63,7 +63,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/set-party-accessibility)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/set-party-accessibility)
    * 
    * Set the accessibility of the party
    */
@@ -80,7 +80,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-generate-code)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/party-generate-code)
    * 
    * Generate an invite code for the party
    */
@@ -96,7 +96,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-disable-code)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/party-disable-code)
    * 
    * Disable the invite code for the party
    */
@@ -112,7 +112,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-invite)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/party-invite)
    * 
    * Invite a friend to the party by Riot ID name and tagline.
    */
@@ -151,7 +151,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-join-by-code)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/party-join-by-code)
    *
    * Join a party by code
    */
@@ -167,7 +167,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/party-set-member-ready)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/party-set-member-ready)
    * 
    * Set the ready status of a player in the current party
    */
@@ -184,7 +184,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/enter-matchmaking-queue)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/enter-matchmaking-queue)
    * 
    * Enter the matchmaking queue for the party
    */
@@ -200,7 +200,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/leave-matchmaking-queue)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/leave-matchmaking-queue)
    * 
    * Leave the matchmaking queue for the party
    */
@@ -216,7 +216,7 @@ export class PartyApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/start-custom-game)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/start-custom-game)
    *
    * Start a custom game
    */

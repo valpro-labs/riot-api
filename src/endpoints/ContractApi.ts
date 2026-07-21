@@ -13,7 +13,7 @@ export class ContractApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/contracts)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/contracts)
    */
   public async getContracts(region: Region, uuid: string, options?: RequestOptions) {
     return this.client.requestPD<ContractsResponse>(

@@ -16,7 +16,7 @@ export class CoreGameApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/current-game-player)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/current-game-player)
    */
   public async getCurrentGamePlayer(region: Region, puuid: string, options?: RequestOptions) {
     return this.client.requestGLZ<CurrentGamePlayerResponse>(
@@ -27,7 +27,7 @@ export class CoreGameApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/current-game-match)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/current-game-match)
    */
   public async getCurrentGameMatch(region: Region, matchId: string, options?: RequestOptions) {
     return this.client.requestGLZ<CurrentGameMatchResponse>(
@@ -38,7 +38,7 @@ export class CoreGameApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/current-game-quit)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/current-game-quit)
    *
    * @param region
    * @param puuid Player UUID

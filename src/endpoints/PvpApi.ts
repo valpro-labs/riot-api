@@ -22,7 +22,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/fetch-content)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/fetch-content)
    */
   public async getFetchContent(region: Region, options?: RequestOptions) {
     return this.client.requestShared<FetchContentResponse>(
@@ -36,7 +36,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/account-xp)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/account-xp)
    */
   public async getAccountXP(region: Region, uuid: string, options?: RequestOptions) {
     return this.client.requestPD<AccountXPResponse>(
@@ -50,7 +50,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/player-loadout)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/player-loadout)
    */
   public async getPlayerLoadout(region: Region, uuid: string, options?: RequestOptions) {
     return this.client.requestPD<PlayerLoadoutResponse>(
@@ -64,7 +64,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/set-player-loadout)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/set-player-loadout)
    */
   public async putPlayerLoadout(region: Region, uuid: string, loadout: PlayerLoadoutResponse, options?: RequestOptions) {
     return this.client.requestPD<PlayerLoadoutResponse>(
@@ -79,7 +79,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/player-mmr)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/player-mmr)
    */
   public async getPlayerMMR(region: Region, uuid: string, options?: RequestOptions) {
     return this.client.requestPD<PlayerMMRResponse>(
@@ -93,7 +93,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/match-history)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/match-history)
    */
   public async getMatchHistory(region: Region, uuid: string, queue?: string, options?: RequestOptions) {
     return this.client.requestPD<MatchHistoryResponse>(
@@ -107,7 +107,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/match-details)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/match-details)
    */
   public async getMatchDetail(region: Region, matchID: string, options?: RequestOptions) {
     return this.client.requestPD<MatchDetailsResponse>(
@@ -121,7 +121,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/competitive-updates)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/competitive-updates)
    */
   public async getCompetitiveUpdates(region: Region, uuid: string, options?: RequestOptions) {
     return this.client.requestPD<CompetitiveUpdatesResponse>(
@@ -174,7 +174,7 @@ export class PvpApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/name-service)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/name-service)
    */
   public async putNameService(region: Region, puuids: string[], options?: RequestOptions) {
     return this.client.requestPD<NameServiceResponse>(

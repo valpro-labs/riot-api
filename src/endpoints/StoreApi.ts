@@ -32,7 +32,7 @@ export class StoreApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/wallet)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/wallet)
    */
   public async getWallet(region: Region, uuid: string, options?: RequestOptions) {
 
@@ -47,7 +47,7 @@ export class StoreApi {
   }
 
   /**
-   * [API Docs](https://valapidocs.techchrism.me/endpoint/owned-items)
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/owned-items)
    */
   public async getOwnedItems(region: Region, uuid: string, itemTypeID: ItemTypeID, options?: RequestOptions) {
 
