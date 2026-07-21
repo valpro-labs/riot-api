@@ -9,6 +9,7 @@ import { NewsFeedApi } from '../src/endpoints/NewsFeedApi';
 import { PartyApi } from '../src/endpoints/PartyApi';
 import { CoreGameApi } from '../src/endpoints/CoreGameApi';
 import { EsportsApi } from '../src/endpoints/EsportsApi';
+import { RestrictionsApi } from '../src/endpoints/RestrictionsApi';
 
 jest.mock('../src/core/RiotClient');
 
@@ -29,5 +30,6 @@ describe('RiotApi', () => {
     expect(api.partyApi).toBeInstanceOf(PartyApi);
     expect(api.coreGameApi).toBeInstanceOf(CoreGameApi);
     expect(api.esportsApi).toBeInstanceOf(EsportsApi);
+    expect(api.restrictionsApi).toBeInstanceOf(RestrictionsApi);
   });
 });

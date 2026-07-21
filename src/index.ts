@@ -11,6 +11,7 @@ export * from './endpoints/PvpApi';
 export * from './endpoints/StoreApi';
 export * from './endpoints/CoreGameApi';
 export * from './endpoints/EsportsApi';
+export * from './endpoints/RestrictionsApi';
 export * from './endpoints/PartyApi';
 export * from './endpoints/FavoritesApi';
 

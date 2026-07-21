@@ -8,5 +8,6 @@ export * from './Shared';
 export * from './Store';
 export * from './CoreGame';
 export * from './Esports';
+export * from './Restrictions';
 export * from './Party/Party';
 export * from './Favorites';

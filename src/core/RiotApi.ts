@@ -11,6 +11,7 @@ import { PartyApi } from '../endpoints/PartyApi';
 import { CoreGameApi } from '../endpoints/CoreGameApi';
 import { FavoritesApi } from '../endpoints/FavoritesApi';
 import { EsportsApi } from '../endpoints/EsportsApi';
+import { RestrictionsApi } from '../endpoints/RestrictionsApi';
 
 import { RiotClientConfig } from '../types/Base/RiotClientConfig';
 
@@ -27,6 +28,7 @@ class RiotApi {
   public coreGameApi: CoreGameApi;
   public favoritesApi: FavoritesApi;
   public esportsApi: EsportsApi;
+  public restrictionsApi: RestrictionsApi;
 
   constructor(config: RiotClientConfig) {
     this.client = new RiotClient({
@@ -44,6 +46,7 @@ class RiotApi {
     this.coreGameApi = new CoreGameApi(this.client);
     this.favoritesApi = new FavoritesApi(this.client);
     this.esportsApi = new EsportsApi(this.client);
+    this.restrictionsApi = new RestrictionsApi(this.client);
   }
 }
 
