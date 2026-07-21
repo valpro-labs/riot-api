@@ -7,6 +7,7 @@ import type { MatchDetailsResponse } from '../types/Pvp/MatchDetails';
 import type { NameServiceResponse } from '../types/Pvp/NameService';
 import type { FetchContentResponse } from '../types/Pvp/FetchContent';
 import type { DailyTicketResponse } from '../types/Pvp/DailyTicket';
+import type { LeaderboardResponse } from '../types/Pvp/Leaderboard';
 
 import type { Region } from '../types/Shared/ValorantType';
 
@@ -131,6 +132,45 @@ export class PvpApi {
         signal: options?.signal,
       }
     );
+  }
+
+  /**
+   * [API Docs](https://valdocs.prometheuz.me/endpoint/leaderboard)
+   */
+  public async getLeaderboard(
+    region: Region,
+    seasonID: string,
+    startIndex: number,
+    size: number,
+    query?: string,
+    options?: RequestOptions
+  ) {
+    const searchParams = new URLSearchParams({
+      startIndex: String(startIndex),
+      size: String(size),
+    });
+    if (query) searchParams.set('query', query);
+
+    return this.client.requestPD<LeaderboardResponse>(
+      region,
+      `mmr/v1/leaderboards/affinity/${this.getShard(region)}/queue/competitive/season/${seasonID}?${searchParams}`,
+      {
+        method: 'GET',
+        signal: options?.signal,
+      }
+    );
+  }
+
+  private getShard(region: Region) {
+    switch (region) {
+      case 'latam':
+      case 'br':
+      case 'na':
+      case 'pbe':
+        return 'na';
+      default:
+        return region;
+    }
   }
 
   /**

@@ -74,6 +74,15 @@ describe('Riot API Endpoints', () => {
       expect(mockClient.requestPD).toHaveBeenCalledWith('na', 'mmr/v1/players/uuid-123/competitiveupdates?queue=competitive', { method: 'GET' });
     });
 
+    it('getLeaderboard uses the PD shard and query parameters', async () => {
+      await api.getLeaderboard('latam', 'season-id', 0, 510, 'player name');
+      expect(mockClient.requestPD).toHaveBeenCalledWith(
+        'latam',
+        'mmr/v1/leaderboards/affinity/na/queue/competitive/season/season-id?startIndex=0&size=510&query=player+name',
+        { method: 'GET', signal: undefined }
+      );
+    });
+
     it('putNameService uses PUT and array data', async () => {
       await api.putNameService('na', ['u1', 'u2']);
       expect(mockClient.requestPD).toHaveBeenCalledWith('na', 'name-service/v2/players', { method: 'PUT', data: ['u1', 'u2'] });
