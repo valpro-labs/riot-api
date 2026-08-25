@@ -93,6 +93,22 @@ export class PvpApi {
   }
 
   /**
+   * Set whether the player's current act rank badge is hidden.
+   * Returns no content on success.
+   */
+  public async postHideActRankBadge(region: Region, uuid: string, hide: boolean, options?: RequestOptions) {
+    return this.client.requestPD<void>(
+      region,
+      `mmr/v1/players/${uuid}/hideactrankbadge`,
+      {
+        method: 'POST',
+        data: { hide },
+        signal: options?.signal,
+      }
+    );
+  }
+
+  /**
    * [API Docs](https://valdocs.prometheuz.me/endpoint/match-history)
    */
   public async getMatchHistory(region: Region, uuid: string, queue?: string, options?: RequestOptions) {

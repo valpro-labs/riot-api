@@ -74,6 +74,15 @@ describe('Riot API Endpoints', () => {
       expect(mockClient.requestPD).toHaveBeenCalledWith('na', 'mmr/v1/players/uuid-123/competitiveupdates?queue=competitive', { method: 'GET' });
     });
 
+    it('postHideActRankBadge sends the hide flag and expects no content', async () => {
+      await api.postHideActRankBadge('ap', '039acf5e-7805-56f4-afa7-3d63486d228a', false);
+      expect(mockClient.requestPD).toHaveBeenCalledWith(
+        'ap',
+        'mmr/v1/players/039acf5e-7805-56f4-afa7-3d63486d228a/hideactrankbadge',
+        { method: 'POST', data: { hide: false }, signal: undefined }
+      );
+    });
+
     it('getLeaderboard uses the PD shard and query parameters', async () => {
       await api.getLeaderboard('latam', 'season-id', 0, 510, 'player name');
       expect(mockClient.requestPD).toHaveBeenCalledWith(
