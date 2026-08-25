@@ -1,4 +1,5 @@
 import type {
+  FavoriteItem,
   FavoritesResponse,
   DeleteFavoriteResponse,
 } from '../types/Favorites/Favorites';
@@ -22,6 +23,21 @@ export class FavoritesApi {
       `favorites/v1/players/${userId}/favorites`,
       {
         method: 'GET',
+        signal: options?.signal,
+      }
+    );
+  }
+
+  /**
+   * [Favorites_AddFavorite] Add a favorite
+   */
+  public async addFavorite(region: Region, userId: string, itemId: string, options?: RequestOptions) {
+    return this.client.requestPD<FavoriteItem>(
+      region,
+      `favorites/v1/players/${userId}/favorites`,
+      {
+        method: 'POST',
+        data: { ItemID: itemId },
         signal: options?.signal,
       }
     );
