@@ -19,8 +19,13 @@ describe('FavoritesApi', () => {
 
   it('deleteFavorite requests the item resource with DELETE', async () => {
     const signal = new AbortController().signal;
+    const response = {
+      Subject: '039acf5e-7805-56f4-afa7-3d63486d228a',
+      FavoritedContent: {},
+    };
+    mockClient.requestPD.mockResolvedValue(response);
 
-    await api.deleteFavorite(
+    const result = await api.deleteFavorite(
       'ap',
       '039acf5e-7805-56f4-afa7-3d63486d228a',
       '23193fee42c2e7e49e7660a2aee12057',
@@ -35,12 +40,25 @@ describe('FavoritesApi', () => {
         signal,
       },
     );
+    expect(result).toEqual(response);
+    expect(result.Subject).toBe(response.Subject);
+    expect(result.FavoritedContent).toEqual(response.FavoritedContent);
   });
 
   it('addFavorite posts the item ID to the favorites resource', async () => {
     const signal = new AbortController().signal;
+    const response = {
+      Subject: '039acf5e-7805-56f4-afa7-3d63486d228a',
+      FavoritedContent: {
+        '88f1bcbd-4dfd-f2ef-8a2c-44b3baa26b3c': {
+          FavoriteID: '23193fee-42c2-e7e4-9e76-60a2aee12057',
+          ItemID: '88f1bcbd-4dfd-f2ef-8a2c-44b3baa26b3c',
+        },
+      },
+    };
+    mockClient.requestPD.mockResolvedValue(response);
 
-    await api.addFavorite(
+    const result = await api.addFavorite(
       'ap',
       '039acf5e-7805-56f4-afa7-3d63486d228a',
       '88f1bcbd-4dfd-f2ef-8a2c-44b3baa26b3c',
@@ -56,5 +74,7 @@ describe('FavoritesApi', () => {
         signal,
       },
     );
+    expect(result.Subject).toBe(response.Subject);
+    expect(result.FavoritedContent).toEqual(response.FavoritedContent);
   });
 });

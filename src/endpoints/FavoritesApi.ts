@@ -1,8 +1,4 @@
-import type {
-  FavoriteItem,
-  FavoritesResponse,
-  DeleteFavoriteResponse,
-} from '../types/Favorites/Favorites';
+import type { FavoritesResponse } from '../types/Favorites/Favorites';
 import type { Region } from '../types/Shared/ValorantType';
 import { IRiotClient } from '../types/Base/IRiotClient';
 import { RequestOptions } from '../types/Base/RequestOptions';
@@ -32,7 +28,7 @@ export class FavoritesApi {
    * [Favorites_AddFavorite] Add a favorite
    */
   public async addFavorite(region: Region, userId: string, itemId: string, options?: RequestOptions) {
-    return this.client.requestPD<FavoriteItem>(
+    return this.client.requestPD<FavoritesResponse>(
       region,
       `favorites/v1/players/${userId}/favorites`,
       {
@@ -47,7 +43,7 @@ export class FavoritesApi {
    * [Favorites_DeleteFavorite] Delete a favorite
    */
   public async deleteFavorite(region: Region, userId: string, itemId: string, options?: RequestOptions) {
-    return this.client.requestPD<DeleteFavoriteResponse>(
+    return this.client.requestPD<FavoritesResponse>(
       region,
       `favorites/v1/players/${userId}/favorites/${itemId}`,
       {

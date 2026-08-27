@@ -13,5 +13,5 @@ export const FavoritesResponseSchema = z.object({
 });
 export type FavoritesResponse = z.input<typeof FavoritesResponseSchema>;
 
-export const DeleteFavoriteResponseSchema = FavoriteItemSchema;
+export const DeleteFavoriteResponseSchema = FavoritesResponseSchema;
 export type DeleteFavoriteResponse = z.input<typeof DeleteFavoriteResponseSchema>;
