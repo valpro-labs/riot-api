@@ -64,6 +64,77 @@ export type NewPlayerExperienceTiming = z.input<typeof NewPlayerExperienceTiming
 export const MatchInfoPremierMatchInfoSchema = z.object({});
 export type MatchInfoPremierMatchInfo = z.input<typeof MatchInfoPremierMatchInfoSchema>;
 
+export const PlayerScoreImpactSchema = z.object({
+  damage: z.string(),
+  deathImpact: z.string(),
+  killImpact: z.string(),
+  trades: z.string(),
+});
+export type PlayerScoreImpact = z.input<typeof PlayerScoreImpactSchema>;
+
+export const PlayerScoreUtilitySchema = z.object({
+  assists: z.string(),
+  defuses: z.string(),
+  plants: z.string(),
+  utilityUsage: z.string(),
+});
+export type PlayerScoreUtility = z.input<typeof PlayerScoreUtilitySchema>;
+
+export const PlayerScoreLabelsSchema = z.object({
+  TempValueO: z.string(),
+  TempValueM: z.string(),
+  TempValueN: z.string(),
+  TempValueP: PlayerScoreImpactSchema,
+  TempValueQ: PlayerScoreUtilitySchema,
+});
+export type PlayerScoreLabels = z.input<typeof PlayerScoreLabelsSchema>;
+
+export const PlayerScoreThresholdsSchema = z.object({
+  distinction: z.number(),
+  merit: z.number(),
+  pass: z.number(),
+});
+export type PlayerScoreThresholds = z.input<typeof PlayerScoreThresholdsSchema>;
+
+export const PlayerScoreProgressSchema = z.object({
+  TempValueR: z.number(),
+  TempValueV: z.number(),
+  TempValueU: z.number(),
+  TempValueS: PlayerScoreThresholdsSchema,
+});
+export type PlayerScoreProgress = z.input<typeof PlayerScoreProgressSchema>;
+
+export const PlayerScoresSchema = z.object({
+  TempValueF: z.number(),
+  TempValueG: z.number(),
+  TempValueH: z.number(),
+  TempValueA: z.number(),
+  TempValueI: z.number(),
+  TempValueJ: z.number(),
+  TempValueB: z.number(),
+  TempValueC: z.number(),
+  TempValueD: z.number(),
+  TempValueE: z.number(),
+  TempValueK: z.number(),
+  TempValueL: PlayerScoreLabelsSchema,
+  TempValueT: PlayerScoreProgressSchema,
+});
+export type PlayerScores = z.input<typeof PlayerScoresSchema>;
+
+export const BonsaiBloomlineSchema = z.object({
+  bloomlineLongLevel: z.number(),
+  bloomlinePlankBackgroundID: z.string(),
+  bloomlineHypeID: z.string(),
+  bloomlineClipID: z.string(),
+});
+export type BonsaiBloomline = z.input<typeof BonsaiBloomlineSchema>;
+
+export const ParticipationPeriodSchema = z.object({
+  sessionStartTime: z.string(),
+  sessionEndTime: z.string(),
+});
+export type ParticipationPeriod = z.input<typeof ParticipationPeriodSchema>;
+
 export const MatchInfoSchema = z.object({
   matchId: matchIDSchema,
   mapId: mapIDSchema,
@@ -81,12 +152,15 @@ export const MatchInfoSchema = z.object({
   gameMode: gameModeSchema,
   isRanked: z.boolean(),
   isMatchSampled: z.boolean(),
+  isEarlyCompletion: z.boolean().optional(),
   seasonId: seasonIDSchema,
   completionState: z.enum(['Surrendered', 'Completed', 'VoteDraw', '']),
   platformType: platformSchema.shape.platformType,
   premierMatchInfo: MatchInfoPremierMatchInfoSchema,
   partyRRPenalties: z.record(z.string(), z.number()).optional(),
   shouldMatchDisablePenalties: z.boolean(),
+  newMapLossReductionModifier: z.number().optional(),
+  isReplayRecorded: z.boolean().optional(),
 });
 export type MatchInfo = z.input<typeof MatchInfoSchema>;
 
@@ -104,6 +178,10 @@ export const PlayerStatsSchema = z.object({
   kills: z.number(),
   deaths: z.number(),
   assists: z.number(),
+  TempValueA: z.number().optional(),
+  TempValueB: z.number().optional(),
+  TempValueD: z.number().optional(),
+  TempValueE: z.number().optional(),
   playtimeMillis: z.number(),
   abilityCasts: PlayerAbilityCastsSchema.nullable().optional(),
 });
@@ -119,6 +197,8 @@ export type PlayerRoundDamage = z.input<typeof PlayerRoundDamageSchema>;
 export const XPModificationSchema = z.object({
   Value: z.number(),
   ID: xpModificationIDSchema,
+  IncludeInV2: z.boolean().optional(),
+  Type: z.number().optional(),
 });
 export type XPModification = z.input<typeof XPModificationSchema>;
 
@@ -130,6 +210,7 @@ export const BehaviorFactorsSchema = z.object({
   friendlyFireIncoming: z.number().optional(),
   friendlyFireOutgoing: z.number().optional(),
   mouseMovement: z.number().optional(),
+  selfDamage: z.number().optional(),
   stayedInSpawnRounds: z.number().optional(),
 });
 export type BehaviorFactors = z.input<typeof BehaviorFactorsSchema>;
@@ -170,9 +251,11 @@ export const PlayerSchema = z.object({
   tagLine: z.string(),
   platformInfo: platformSchema,
   teamId: teamOrPlayerSchema,
+  teamNumber: z.number().optional(),
   partyId: partyIDSchema,
   characterId: characterIDSchema,
   stats: PlayerStatsSchema.nullable(),
+  scores: PlayerScoresSchema.optional(),
   roundDamage: z.array(PlayerRoundDamageSchema).nullable(),
   competitiveTier: z.number(),
   isObserver: z.boolean(),
@@ -184,6 +267,9 @@ export const PlayerSchema = z.object({
   xpModifications: z.array(XPModificationSchema).optional(),
   behaviorFactors: BehaviorFactorsSchema.optional(),
   newPlayerExperienceDetails: NewPlayerExperienceDetailsSchema.optional(),
+  premierPrestige: z.record(z.string(), z.unknown()).optional(),
+  bonsaiBloomline: BonsaiBloomlineSchema.optional(),
+  participationPeriods: z.array(ParticipationPeriodSchema).optional(),
 });
 export type Player = z.input<typeof PlayerSchema>;
 
@@ -217,6 +303,8 @@ export const TeamSchema = z.object({
   roundsPlayed: z.number(),
   roundsWon: z.number(),
   numPoints: z.number(),
+  tempR: z.number().optional(),
+  mvp: z.string().optional(),
 });
 export type Team = z.input<typeof TeamSchema>;
 
@@ -267,6 +355,7 @@ export const RoundResultSchema = z.object({
   roundCeremony: z.enum(['CeremonyDefault', 'CeremonyTeamAce', 'CeremonyFlawless', 'CeremonyCloser', 'CeremonyClutch', 'CeremonyThrifty', 'CeremonyAce', '']),
   winningTeam: teamOrPlayerSchema,
   winningTeamRole: z.enum(['Attacker', 'Defender', '']).optional(),
+  firstBloodPlayer: playerUUIDSchema.optional(),
   bombPlanter: playerUUIDSchema.optional(),
   bombDefuser: teamOrPlayerSchema.optional(),
   plantRoundTime: z.number().optional(),
@@ -280,6 +369,8 @@ export const RoundResultSchema = z.object({
   roundResultCode: z.enum(['Elimination', 'Detonate', 'Defuse', 'Surrendered', '']),
   playerEconomies: z.array(RoundResultPlayerEconomySchema).nullable(),
   playerScores: z.array(RoundResultPlayerScoreSchema).nullable(),
+  ceremonyPlayer: playerUUIDSchema.optional(),
+  ceremonyTeam: teamOrPlayerSchema.optional(),
 });
 export type RoundResult = z.input<typeof RoundResultSchema>;
 
@@ -291,7 +382,8 @@ export const MatchDetailsSchema = z.object({
   teams: z.array(TeamSchema).nullable(),
   roundResults: z.array(RoundResultSchema).nullable(),
   kills: z.array(KillSchema.merge(z.object({ round: z.number() }))).nullable(),
+  matchMvp: playerUUIDSchema.optional(),
+  hasTempValues: z.boolean().optional(),
 });
 
 export type MatchDetailsResponse = z.input<typeof MatchDetailsSchema>;
-
