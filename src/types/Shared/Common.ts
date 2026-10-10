@@ -27,5 +27,5 @@ export const platformSchema = z.object({
   platformOS: z.literal('Windows'),
   platformOSVersion: z.string(),
   platformChipset: z.literal('Unknown'),
-  platformDevice: z.string().optional(),
+  platformDevice: z.string().optional().describe('Platform/device identifier included by newer match-detail responses.'),
 });
