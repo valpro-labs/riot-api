@@ -12,6 +12,7 @@ import { CoreGameApi } from '../endpoints/CoreGameApi';
 import { FavoritesApi } from '../endpoints/FavoritesApi';
 import { EsportsApi } from '../endpoints/EsportsApi';
 import { RestrictionsApi } from '../endpoints/RestrictionsApi';
+import { BloomlineApi } from '../endpoints/BloomlineApi';
 
 import { RiotClientConfig } from '../types/Base/RiotClientConfig';
 
@@ -29,6 +30,7 @@ class RiotApi {
   public favoritesApi: FavoritesApi;
   public esportsApi: EsportsApi;
   public restrictionsApi: RestrictionsApi;
+  public bloomlineApi: BloomlineApi;
 
   constructor(config: RiotClientConfig) {
     this.client = new RiotClient({
@@ -47,6 +49,7 @@ class RiotApi {
     this.favoritesApi = new FavoritesApi(this.client);
     this.esportsApi = new EsportsApi(this.client);
     this.restrictionsApi = new RestrictionsApi(this.client);
+    this.bloomlineApi = new BloomlineApi(this.client);
   }
 }
 

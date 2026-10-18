@@ -14,6 +14,7 @@ export * from './endpoints/EsportsApi';
 export * from './endpoints/RestrictionsApi';
 export * from './endpoints/PartyApi';
 export * from './endpoints/FavoritesApi';
+export * from './endpoints/BloomlineApi';
 
 // Types
 export * from './types';
